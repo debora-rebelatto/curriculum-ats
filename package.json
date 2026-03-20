@@ -1,0 +1,14 @@
+{
+  "name": "ats-analyzer",
+  "version": "1.0.0",
+  "description": "ATS Resume Analyzer — proxy server",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "npx nodemon server/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
