@@ -34,7 +34,7 @@ app.post('/api/analyze', async (req, res) => {
           block.source?.type === 'base64'
         ) {
           const buffer = Buffer.from(block.source.data, 'base64');
-          const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
+          const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
           const loadingTask = pdfjsLib.getDocument({
             data: new Uint8Array(buffer),
           });
