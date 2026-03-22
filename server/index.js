@@ -19,9 +19,24 @@ app.post('/api/analyze', async (req, res) => {
   try {
     const { system, messages } = req.body;
     const userMsg = messages?.[0]?.content;
-    const userText = Array.isArray(userMsg)
-      ? userMsg.filter(b => b.type === 'text').map(b => b.text).join('\n')
-      : userMsg || '';
+
+    let userText = '';
+
+    if (Array.isArray(userMsg)) {
+      for (const block of userMsg) {
+        if (block.type === 'text') {
+          userText += block.text + '\n';
+        } else if (block.type === 'document' && block.source?.type === 'base64') {
+          // Extrai texto do PDF via pdf-parse
+          const pdfParse = require('pdf-parse');
+          const buffer = Buffer.from(block.source.data, 'base64');
+          const parsed = await pdfParse(buffer);
+          userText += parsed.text + '\n';
+        }
+      }
+    } else {
+      userText = userMsg || '';
+    }
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
