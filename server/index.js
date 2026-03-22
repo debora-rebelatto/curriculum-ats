@@ -10,7 +10,7 @@ const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../frontend/dist/frontend/browser')));
 
 app.post('/api/analyze', async (req, res) => {
   if (!GROQ_API_KEY) {

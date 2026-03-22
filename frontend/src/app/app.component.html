@@ -1,0 +1,160 @@
+<div class="container">
+  <h1>Analisador ATS</h1>
+  <p class="subtitle">
+    Analise seu currículo para sistemas de rastreamento de candidatos
+  </p>
+
+  <div *ngIf="viewMode === 'form-view'" id="form-view">
+    <div class="tabs">
+      <button class="tab" [class.active]="activeTab === 'upload'" (click)="switchTab('upload')">
+        Upload PDF
+      </button>
+      <button class="tab" [class.active]="activeTab === 'paste'" (click)="switchTab('paste')">Colar texto</button>
+    </div>
+    <div class="input-panel">
+      
+      <div *ngIf="activeTab === 'paste'" id="paste-panel">
+        <label class="field-label">Currículo</label>
+        <textarea
+          [(ngModel)]="resumeText"
+          rows="9"
+          placeholder="Cole o texto do seu currículo aqui..."
+        ></textarea>
+      </div>
+
+      <div *ngIf="activeTab === 'upload'" id="upload-panel">
+        <label class="field-label">Currículo (PDF)</label>
+        <div
+          class="upload-zone"
+          [class.has-file]="fileName !== null"
+          id="drop-zone"
+          (click)="fileInput.click()"
+        >
+          <div class="upload-icon">📄</div>
+          <div class="upload-text" id="upload-label">
+            {{ fileName || 'Clique ou arraste um arquivo PDF' }}
+          </div>
+          <div class="upload-hint">Apenas .pdf</div>
+        </div>
+        <input
+          #fileInput
+          type="file"
+          id="file-input"
+          accept=".pdf"
+          (change)="handleFile($event)"
+          style="display: none"
+        />
+      </div>
+
+      <div class="row">
+        <div>
+          <label class="field-label">Descrição da vaga (opcional)</label>
+          <textarea
+            [(ngModel)]="jdText"
+            rows="5"
+            placeholder="Cole o job description para análise de compatibilidade..."
+          ></textarea>
+        </div>
+        <div>
+          <label class="field-label">Cargo / área alvo</label>
+          <textarea
+            [(ngModel)]="roleText"
+            rows="5"
+            placeholder="Ex: Dev Frontend Angular, TypeScript, RxJS..."
+          ></textarea>
+        </div>
+      </div>
+      <div *ngIf="errorBox" id="error-box" class="error-msg">
+        {{ errorBox }}
+      </div>
+      <button class="analyze-btn" (click)="analyze()">
+        Analisar currículo
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="viewMode === 'loading-view'" id="loading-view" class="loading" style="display: flex;">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loading-msg">{{ loadingMsg }}</div>
+  </div>
+
+  <div *ngIf="viewMode === 'results-view'" id="results-view" class="results" style="display: flex;">
+    <div class="results-header">
+      <button class="back-btn" (click)="goBack()">← Nova análise</button>
+      <div class="export-actions">
+        <button class="action-btn" (click)="exportImage()">
+          🖼️ Salvar Imagem
+        </button>
+        <button class="action-btn" (click)="exportPDF()">
+          📄 Salvar PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="score-row" id="score-row">
+      <div class="metric-card">
+        <div class="metric-label">Score ATS geral</div>
+        <div class="metric-value" [ngClass]="colorClass(results?.ats_score)">{{ results?.ats_score !== null && results?.ats_score !== undefined ? results?.ats_score + '%' : 'N/A' }}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Legibilidade</div>
+        <div class="metric-value" [ngClass]="colorClass(results?.readability_score)">{{ results?.readability_score !== null && results?.readability_score !== undefined ? results?.readability_score + '%' : 'N/A' }}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Compatibilidade com vaga</div>
+        <div class="metric-value" [ngClass]="colorClass(results?.job_match_score)">{{ results?.job_match_score !== null && results?.job_match_score !== undefined ? results?.job_match_score + '%' : 'N/A' }}</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Dimensões ATS</div>
+      <div id="dimensions">
+        <div class="bar-wrap" *ngFor="let d of results?.dimensions || []">
+          <div class="bar-label">
+            <span>{{ d.name }}</span>
+            <span>{{ d.score }}%</span>
+          </div>
+          <div class="bar-bg">
+            <div class="bar-fill" [ngClass]="barClass(d.score)" [style.width.%]="d.score"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Palavras-chave</div>
+      <div style="margin-bottom: 12px">
+        <div class="field-label" style="margin-bottom: 6px">Encontradas</div>
+        <div class="tags" id="kw-found">
+          <span class="tag found" *ngFor="let k of results?.keywords_found || []">{{ k }}</span>
+          <span *ngIf="!(results?.keywords_found?.length)" style="font-size:13px;color:var(--text3)">Nenhuma identificada</span>
+        </div>
+      </div>
+      <div>
+        <div class="field-label" style="margin-bottom: 6px">Faltantes / recomendadas</div>
+        <div class="tags" id="kw-missing">
+          <span class="tag missing" *ngFor="let k of results?.keywords_missing || []">{{ k }}</span>
+          <span *ngIf="!(results?.keywords_missing?.length)" style="font-size:13px;color:var(--text3)">Nenhuma</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card" id="jd-compat-card" *ngIf="results?.job_match_details">
+      <div class="section-title">Compatibilidade com a vaga</div>
+      <div id="jd-compat">
+        <p style="font-size:14px;line-height:1.7;color:var(--text2)">{{ results.job_match_details }}</p>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Sugestões de melhoria</div>
+      <div class="suggestions" id="suggestions">
+        <div class="suggestion" [ngClass]="s.priority" *ngFor="let s of results?.suggestions || []">
+          <strong>{{ s.title }}</strong>
+          {{ s.body }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
