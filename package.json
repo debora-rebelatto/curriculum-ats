@@ -4,7 +4,7 @@
   "description": "ATS Resume Analyzer — proxy server",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "npx nodemon server/index.js",
     "dev": "npx nodemon server/index.js"
   },
   "dependencies": {

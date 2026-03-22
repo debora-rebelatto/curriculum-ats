@@ -7,7 +7,7 @@ Analisa currículos contra sistemas ATS: score, palavras-chave, compatibilidade 
 ```
 ats-analyzer/
 ├── server/
-│   └── index.js      # Proxy Express → Anthropic API
+│   └── index.js      # Proxy Express → LLM Local (Ollama)
 ├── public/
 │   └── index.html    # Frontend completo
 └── package.json
@@ -21,21 +21,9 @@ ats-analyzer/
 npm install
 ```
 
-### 2. Configurar a API key
+### 2. Iniciar o Ollama (Pré-requisito)
 
-Crie um arquivo `.env` na raiz (ou exporte a variável antes de rodar):
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-```
-
-Ou crie `.env`:
-```
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-> Se usar .env, instale dotenv: `npm install dotenv`  
-> E adicione `require('dotenv').config()` no topo do `server/index.js`.
+Certifique-se de que o **Ollama** está instalado e rodando localmente (comumente na porta `11434`) com o modelo que será utilizado (`gemma3:4b` ou o que estiver configurado em `server/index.js`).
 
 ### 3. Rodar
 

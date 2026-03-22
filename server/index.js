@@ -18,7 +18,6 @@ app.post('/api/analyze', async (req, res) => {
 
   try {
     const { system, messages } = req.body;
-
     const userMsg = messages?.[0]?.content;
     const userText = Array.isArray(userMsg)
       ? userMsg.filter(b => b.type === 'text').map(b => b.text).join('\n')
