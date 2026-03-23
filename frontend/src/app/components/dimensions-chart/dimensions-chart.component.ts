@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { Dimension } from '../../models/analyze.model';
 
 @Component({
   selector: 'app-dimensions-chart',
@@ -9,5 +10,5 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './dimensions-chart.component.html',
 })
 export class DimensionsChartComponent {
-  @Input() dimensions: { name: string; score: number }[] = [];
+  @Input() dimensions: Dimension[] = [];
 }

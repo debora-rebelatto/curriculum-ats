@@ -1,42 +1,46 @@
 @if (results) {
-  <div id="results-view" class="space-y-8 pb-10">
-    <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2">
+<div id="results-view" #resultsView class="space-y-8 pb-10">
+  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2">
+    <button
+      class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
+      (click)="goBack()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      {{ 'app.results.newAnalysis' | translate }}
+    </button>
+    <div class="flex gap-3 w-full sm:w-auto">
       <button
-        class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
-        (click)="goBack()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        {{ 'app.results.newAnalysis' | translate }}
+        class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
+        (click)="exportImage()">
+        🖼️ <span class="hidden sm:inline">{{ 'app.results.exportImg' | translate }}</span>
       </button>
-      <div class="flex gap-3 w-full sm:w-auto">
-        <button
-          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
-          (click)="exportImage()">
-          🖼️ <span class="hidden sm:inline">{{ 'app.results.exportImg' | translate }}</span>
-        </button>
-        <button
-          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-brand-600 border border-brand-700 rounded-xl shadow-sm hover:bg-brand-700 hover:shadow transition-all"
-          (click)="exportPDF()">
-          📄 <span class="hidden sm:inline">{{ 'app.results.exportPdf' | translate }}</span>
-        </button>
-      </div>
+      <button
+        class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-brand-600 border border-brand-700 rounded-xl shadow-sm hover:bg-brand-700 hover:shadow transition-all"
+        (click)="exportPDF()">
+        📄 <span class="hidden sm:inline">{{ 'app.results.exportPdf' | translate }}</span>
+      </button>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score"
-      theme="brand"></app-score-card>
-      <app-score-card [title]="'app.results.readability' | translate" [score]="results.readability_score"
-      theme="indigo"></app-score-card>
-      <app-score-card [title]="'app.results.compatibility' | translate" [score]="results.job_match_score"
-      theme="gradient"></app-score-card>
-    </div>
-    <app-dimensions-chart [dimensions]="results.dimensions || []"></app-dimensions-chart>
-    <app-keywords-list [keywordsFound]="results.keywords_found || []" [keywordsMissing]="results.keywords_missing || []"></app-keywords-list>
-    @if (results.job_match_details) {
-      <app-job-match-details [details]="results.job_match_details"></app-job-match-details>
-    }
-    @if (results.suggestions?.length) {
-      <app-action-suggestions [suggestions]="results.suggestions"></app-action-suggestions>
-    }
   </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score"
+      theme="brand"></app-score-card>
+    <app-score-card [title]="'app.results.readability' | translate" [score]="results.readability_score"
+      theme="indigo"></app-score-card>
+    <app-score-card [title]="'app.results.compatibility' | translate" [score]="results.job_match_score"
+      theme="gradient"></app-score-card>
+  </div>
+  <app-dimensions-chart [dimensions]="results.dimensions || []"></app-dimensions-chart>
+  <app-keywords-list [keywordsFound]="results.keywords_found || []"
+    [keywordsMissing]="results.keywords_missing || []"></app-keywords-list>
+  @if (results.job_match_details) {
+  <app-job-match-details [details]="results.job_match_details"></app-job-match-details>
+  }
+  @if (results.strengths.length) {
+  <app-strengths-list [strengths]="results.strengths"></app-strengths-list>
+  }
+  @if (results.suggestions.length) {
+  <app-action-suggestions [suggestions]="results.suggestions"></app-action-suggestions>
+  }
+</div>
 }

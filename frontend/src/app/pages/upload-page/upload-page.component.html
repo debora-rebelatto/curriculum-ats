@@ -1,23 +1,22 @@
 @if (viewMode === 'form-view') {
-  <div class="glass-card p-6 md:p-8 transition-all duration-300 transform scale-100">
-    <app-source-toggle [activeTab]="activeTab" (tabChange)="switchTab($event)"></app-source-toggle>
-    <div class="space-y-6">
-      @if (activeTab === 'paste') {
-        <app-text-paste [(resumeText)]="resumeText"></app-text-paste>
-      }
-      @if (activeTab === 'upload') {
-        <app-pdf-upload [fileName]="fileName"
-        (fileSelected)="handleFile($event)"></app-pdf-upload>
-      }
-      <app-job-details-form [(jdText)]="jdText" [(roleText)]="roleText"></app-job-details-form>
-      <app-alert-message [message]="errorBox" type="error"></app-alert-message>
-      <div class="pt-2">
-        <app-primary-button (clicked)="analyze()">{{ 'app.form.analyzeBtn' | translate }}</app-primary-button>
-      </div>
+<div class="p-6 md:p-8 transition-all duration-300 transform scale-100">
+  <app-source-toggle [activeTab]="activeTab" (tabChange)="switchTab($event)"></app-source-toggle>
+  <div class="gap-12">
+    @if (activeTab === 'paste') {
+    <app-text-paste [(resumeText)]="resumeText"></app-text-paste>
+    }
+    @if (activeTab === 'upload') {
+    <app-pdf-upload [fileName]="fileName" (fileSelected)="handleFile($event)"></app-pdf-upload>
+    }
+    <app-job-details-form [(jdText)]="jdText" [(roleText)]="roleText"></app-job-details-form>
+    <app-alert-message [message]="errorBox" type="error"></app-alert-message>
+    <div class="pt-2">
+      <app-primary-button (clicked)="analyze()">{{ 'app.form.analyzeBtn' | translate }}</app-primary-button>
     </div>
   </div>
+</div>
 }
 
 @if (viewMode === 'loading-view') {
-  <app-loading-spinner [messageIndex]="loadingMsgIndex"></app-loading-spinner>
+<app-loading-spinner [messageIndex]="loadingMsgIndex"></app-loading-spinner>
 }

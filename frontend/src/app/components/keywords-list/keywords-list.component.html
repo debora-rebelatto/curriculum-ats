@@ -24,7 +24,7 @@
             {{ k }}
           </span>
         }
-        @if (!(keywordsFound?.length)) {
+        @if (!keywordsFound.length) {
           <span class="text-sm text-slate-500 italic block mt-2">{{ 'app.results.keywordsNoneFound' | translate }}</span>
         }
       </div>
@@ -45,7 +45,7 @@
             {{ k }}
           </span>
         }
-        @if (!(keywordsMissing?.length)) {
+        @if (!keywordsMissing.length) {
           <span class="text-sm text-slate-500 italic block mt-2">{{ 'app.results.keywordsNoneMissing' | translate }}</span>
         }
       </div>

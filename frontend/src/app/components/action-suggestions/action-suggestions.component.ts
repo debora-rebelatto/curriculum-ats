@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { Suggestion } from '../../models/analyze.model';
 
 @Component({
   selector: 'app-action-suggestions',
@@ -9,5 +10,5 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './action-suggestions.component.html',
 })
 export class ActionSuggestionsComponent {
-  @Input() suggestions: { priority: string; title: string; body: string }[] = [];
+  @Input() suggestions: Suggestion[] = [];
 }

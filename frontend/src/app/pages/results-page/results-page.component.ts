@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { DimensionsChartComponent } from '../../components/dimensions-chart/dime
 import { KeywordsListComponent } from '../../components/keywords-list/keywords-list.component';
 import { JobMatchDetailsComponent } from '../../components/job-match-details/job-match-details.component';
 import { ActionSuggestionsComponent } from '../../components/action-suggestions/action-suggestions.component';
+import { StrengthsListComponent } from '../../components/strengths-list/strengths-list.component';
 
 @Component({
   selector: 'app-results-page',
@@ -21,13 +22,16 @@ import { ActionSuggestionsComponent } from '../../components/action-suggestions/
     DimensionsChartComponent,
     KeywordsListComponent,
     JobMatchDetailsComponent,
-    ActionSuggestionsComponent
-],
+    ActionSuggestionsComponent,
+    StrengthsListComponent
+  ],
   templateUrl: './results-page.component.html',
 })
 export class ResultsPageComponent implements OnInit {
   private analyzeService = inject(AnalyzeService);
   private router = inject(Router);
+
+  @ViewChild('resultsView', { static: false }) resultsView!: ElementRef<HTMLElement>;
 
   results: AnalyzerResult | null = null;
 
@@ -44,7 +48,7 @@ export class ResultsPageComponent implements OnInit {
   }
 
   exportImage() {
-    const el = document.getElementById('results-view');
+    const el = this.resultsView?.nativeElement;
     if (!el) return;
     html2canvas(el, { scale: 2, backgroundColor: '#f8fafc' }).then(canvas => {
       const link = document.createElement('a');
@@ -55,7 +59,7 @@ export class ResultsPageComponent implements OnInit {
   }
 
   exportPDF() {
-    const el = document.getElementById('results-view');
+    const el = this.resultsView?.nativeElement;
     if (!el) return;
     const isDark = document.documentElement.classList.contains('dark');
     html2canvas(el, { scale: 2, backgroundColor: isDark ? '#0f172a' : '#f8fafc' }).then(canvas => {
