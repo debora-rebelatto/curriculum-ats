@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "Analisador ATS",
+    "pro": "Pro",
+    "subtitle": "Analise seu currículo para sistemas de rastreamento de candidatos com feedback detalhado guiado por IA.",
+    "tabs": {
+      "upload": "Upload PDF",
+      "paste": "Colar texto"
+    },
+    "form": {
+      "resumeTextLabel": "Texto do Currículo",
+      "resumeTextPlaceholder": "Cole todo o texto do seu currículo aqui...",
+      "resumePdfLabel": "Currículo em PDF",
+      "resumePdfHint": "Somente arquivos PDF até 10MB",
+      "resumePdfAction": "Clique ou arraste um arquivo PDF",
+      "jdLabel": "Descrição da vaga (Opcional)",
+      "jdPlaceholder": "Para análise de aderência à vaga...",
+      "roleLabel": "Cargo / Área alvo",
+      "rolePlaceholder": "Ex: Desenvolvedor Senior, Analista Comercial...",
+      "analyzeBtn": "✨ Gerar Análise Inteligente"
+    },
+    "loading": {
+      "msg0": "Lendo o currículo...",
+      "msg1": "Identificando palavras-chave...",
+      "msg2": "Calculando score ATS...",
+      "msg3": "Gerando sugestões...",
+      "subtext": "A IA está processando seu currículo usando o modelo mais recente..."
+    },
+    "results": {
+      "newAnalysis": "Nova Análise",
+      "exportImg": "Salvar Imagem",
+      "exportPdf": "Salvar PDF",
+      "scoreAts": "Score ATS Geral",
+      "readability": "Legibilidade",
+      "compatibility": "Compatibilidade",
+      "dimensionsTitle": "Desempenho por Dimensão",
+      "keywordsTitle": "Identidade e Palavras-chave",
+      "keywordsFound": "Keywords Encontradas",
+      "keywordsMissing": "Ausentes ou Recomendadas",
+      "keywordsNoneFound": "Nenhuma palavra-chave principal foi detectada.",
+      "keywordsNoneMissing": "Nenhuma alteração recomendada em keywords!",
+      "jobMatchTitle": "Sinergia com a Vaga",
+      "suggestionsTitle": "Plano de Ação e Sugestões"
+    },
+    "error": {
+      "pasteEmpty": "Cole o texto do currículo antes de analisar.",
+      "uploadEmpty": "Selecione um arquivo PDF antes de analisar."
+    }
+  }
+}
