@@ -1,4 +1,5 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,19 +11,20 @@ import { ScoreCardComponent } from '../../components/score-card/score-card.compo
 import { DimensionsChartComponent } from '../../components/dimensions-chart/dimensions-chart.component';
 import { KeywordsListComponent } from '../../components/keywords-list/keywords-list.component';
 import { JobMatchDetailsComponent } from '../../components/job-match-details/job-match-details.component';
-import { ActionSuggestionsComponent } from '../../components/action-suggestions/action-suggestions.component';
 import { StrengthsListComponent } from '../../components/strengths-list/strengths-list.component';
+import { SuggestionsListComponent } from '../../components/suggestions-list/suggestions-list.component';
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
   imports: [
+    NgClass,
     TranslateModule,
     ScoreCardComponent,
     DimensionsChartComponent,
     KeywordsListComponent,
     JobMatchDetailsComponent,
-    ActionSuggestionsComponent,
+    SuggestionsListComponent,
     StrengthsListComponent
   ],
   templateUrl: './results-page.component.html',
@@ -34,6 +36,7 @@ export class ResultsPageComponent implements OnInit {
   @ViewChild('resultsView', { static: false }) resultsView!: ElementRef<HTMLElement>;
 
   results: AnalyzerResult | null = null;
+  isExporting = false;
 
   ngOnInit(): void {
     this.results = this.analyzeService.latestResult;
@@ -50,25 +53,44 @@ export class ResultsPageComponent implements OnInit {
   exportImage() {
     const el = this.resultsView?.nativeElement;
     if (!el) return;
-    html2canvas(el, { scale: 2, backgroundColor: '#f8fafc' }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = 'ats-analise.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
+
+    this.isExporting = true;
+    setTimeout(() => {
+      const isDark = document.documentElement.classList.contains('dark');
+      html2canvas(el, {
+        scale: 2,
+        backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+        windowWidth: 1200,
+        useCORS: true
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ats-analise.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        this.isExporting = false;
+      }).catch(() => this.isExporting = false);
+    }, 150);
   }
 
   exportPDF() {
     const el = this.resultsView?.nativeElement;
     if (!el) return;
-    const isDark = document.documentElement.classList.contains('dark');
-    html2canvas(el, { scale: 2, backgroundColor: isDark ? '#0f172a' : '#f8fafc' }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('ats-analise.pdf');
-    });
+
+    this.isExporting = true;
+    setTimeout(() => {
+      const isDark = document.documentElement.classList.contains('dark');
+      html2canvas(el, {
+        scale: 2,
+        backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+        windowWidth: 1200,
+        useCORS: true
+      }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save('ats-analise.pdf');
+        this.isExporting = false;
+      }).catch(() => this.isExporting = false);
+    }, 150);
   }
 }

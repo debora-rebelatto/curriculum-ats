@@ -1,6 +1,25 @@
 @if (results) {
-<div id="results-view" #resultsView class="space-y-8 pb-10">
-  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2">
+<div id="results-view" #resultsView class="pb-10 transition-all duration-300 relative overflow-hidden"
+  [ngClass]="isExporting ? 'p-12 sm:p-16 bg-slate-50 dark:bg-slate-900 space-y-10' : 'space-y-8'">
+
+  @if (isExporting) {
+  <div
+    class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-brand-500/10 via-indigo-500/10 to-emerald-500/10 blur-3xl -z-10">
+  </div>
+  <div
+    class="absolute top-12 right-12 text-2xl font-bold font-outfit text-slate-200 dark:text-slate-800 tracking-tighter">
+    {{ 'app.title' | translate }}</div>
+
+  <div class="text-center mb-12 pt-6">
+    <h1
+      class="text-[2.5rem] font-outfit font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400 mb-3 tracking-tight">
+      {{ 'app.results.reportTitle' | translate }}</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">{{ 'app.results.reportSubTitle' | translate }}</p>
+  </div>
+  }
+
+  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2"
+    [class.hidden]="isExporting">
     <button
       class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
       (click)="goBack()">
@@ -23,24 +42,23 @@
     </div>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score"
-      theme="brand"></app-score-card>
+    <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score" theme="brand" />
     <app-score-card [title]="'app.results.readability' | translate" [score]="results.readability_score"
-      theme="indigo"></app-score-card>
+      theme="indigo" />
     <app-score-card [title]="'app.results.compatibility' | translate" [score]="results.job_match_score"
-      theme="gradient"></app-score-card>
+      theme="gradient" />
   </div>
-  <app-dimensions-chart [dimensions]="results.dimensions || []"></app-dimensions-chart>
+  <app-dimensions-chart [dimensions]="results.dimensions || []" />
   <app-keywords-list [keywordsFound]="results.keywords_found || []"
-    [keywordsMissing]="results.keywords_missing || []"></app-keywords-list>
+    [keywordsMissing]="results.keywords_missing || []" />
   @if (results.job_match_details) {
-  <app-job-match-details [details]="results.job_match_details"></app-job-match-details>
+  <app-job-match-details [details]="results.job_match_details" />
   }
   @if (results.strengths.length) {
-  <app-strengths-list [strengths]="results.strengths"></app-strengths-list>
+  <app-strengths-list [strengths]="results.strengths" />
   }
   @if (results.suggestions.length) {
-  <app-action-suggestions [suggestions]="results.suggestions"></app-action-suggestions>
+  <app-suggestions-list [suggestions]="results.suggestions" />
   }
 </div>
 }

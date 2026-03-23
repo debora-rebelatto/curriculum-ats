@@ -1,57 +1,80 @@
-# Analisador ATS
+# Analisador ATS (Curriculum Analyzer)
 
-Analisa currículos contra sistemas ATS: score, palavras-chave, compatibilidade com vaga e sugestões de melhoria.
+Analise currículos contra sistemas ATS (Candidate Tracking Systems): receba feedback detalhado sobre score, palavras-chave, compatibilidade com vagas e sugestões de melhoria guiadas por IA.
 
-## Estrutura
+**Demo:** [curriculum-ats.up.railway.app](https://curriculum-ats.up.railway.app)
 
-```
+## 🚀 Tecnologias
+
+- **Frontend**: Angular 18+, Tailwind CSS, @ngx-translate (i18n), html2canvas/jsPDF para exportação.
+- **Backend**: Node.js, Express, Groq API (Llama 3.3 70b), pdf-parse.
+
+## 📂 Estrutura do Projeto
+
+```text
 ats-analyzer/
 ├── server/
-│   └── index.js      # Proxy Express → LLM Local (Ollama)
-├── public/
-│   └── index.html    # Frontend completo
-└── package.json
+│   └── index.js      # Proxy API → Groq API
+├── frontend/
+│   ├── src/          # Código fonte Angular
+│   └── public/       # Ativos estáticos e traduções
+├── package.json      # Scripts globais
+└── .env              # Variáveis de ambiente
 ```
 
-## Setup
+## 🛠️ Configuração e Instalação
 
-### 1. Instalar dependências
+### 1. Pré-requisitos
+
+- **Node.js**: v18 ou superior.
+- **Groq API Key**: Obtenha em [console.groq.com](https://console.groq.com).
+
+### 2. Configurar Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+GROQ_API_KEY="sua_chave_aqui"
+GROQ_MODEL="llama-3.3-70b-versatile"
+PORT=3000
+```
+
+### 3. Instalar Dependências
 
 ```bash
-npm install
+# Instala dependências do servidor e do frontend
+npm run build
 ```
 
-### 2. Iniciar o Ollama (Pré-requisito)
+*Nota: O comando `npm run build` instalará as dependências do frontend e gerará o build de produção.*
 
-Certifique-se de que o **Ollama** está instalado e rodando localmente (comumente na porta `11434`) com o modelo que será utilizado (`gemma3:4b` ou o que estiver configurado em `server/index.js`).
+## 🏃 Executando o Projeto
 
-### 3. Rodar
-
-```bash
-npm start
-```
-
-Acesse: [http://localhost:3000](http://localhost:3000)
-
-### Dev (com auto-reload)
+### Modo de Desenvolvimento (Frontend + Backend)
 
 ```bash
 npm run dev
 ```
 
-> Requer nodemon: `npm install -D nodemon`
+O frontend estará disponível em [http://localhost:4200](http://localhost:4200) (ou via proxy no 3000).
 
-## Como usar
+### Modo de Produção
 
-1. Cole o texto do currículo **ou** faça upload de um PDF
-2. Opcionalmente cole a descrição da vaga e o cargo alvo
-3. Clique em **Analisar currículo**
+```bash
+npm start
+```
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-## O que é analisado
+## 📝 Como Usar
 
-- **Score ATS geral** — compatibilidade global com parsers ATS
-- **Legibilidade** — clareza e objetividade do texto
-- **Compatibilidade com vaga** — match com o job description (se fornecido)
-- **5 dimensões** — formatação, palavras-chave, estrutura, quantificação, clareza
-- **Keywords** — encontradas e faltantes/recomendadas
-- **Sugestões** — priorizadas em crítico, atenção e dica
+1. Escolha entre **Upload PDF** ou **Colar Texto**.
+2. Opcionalmente, adicione a **Descrição da Vaga** e o **Cargo Alvo** para uma análise de aderência.
+3. Clique em **✨ Gerar Análise Inteligente**.
+4. Visualize o relatório detalhado e **exporte como Imagem ou PDF**.
+
+## 📊 O que é analisado
+
+- **Score ATS Geral**: Compatibilidade técnica com parsers tradicionais.
+- **Legibilidade e Sinérgia**: Clareza do texto e adequação ao cargo.
+- **Palavras-chave**: Identificação automática de termos técnicos (encontrados vs. sugeridos).
+- **Plano de Ação**: Sugestões categorizadas por prioridade (Crítico, Atenção, Dica).
