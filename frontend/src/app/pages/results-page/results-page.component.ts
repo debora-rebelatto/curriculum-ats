@@ -40,9 +40,6 @@ export class ResultsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.results = this.analyzeService.latestResult;
-    if (!this.results) {
-      this.router.navigate(['/']); // Redirect if no results
-    }
   }
 
   goBack() {
