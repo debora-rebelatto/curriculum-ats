@@ -1,10 +1,5 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const dotenv = require('dotenv').config();
-const { PDFParse } = require('pdf-parse');
-
 // Polyfill for DOMMatrix in Node.js (needed for pdfjs-dist used by pdf-parse)
+// MUST be before require('pdf-parse')
 if (typeof global.DOMMatrix === 'undefined') {
   global.DOMMatrix = class DOMMatrix {
     constructor(init) {
@@ -21,6 +16,12 @@ if (typeof global.DOMMatrix === 'undefined') {
     transformPoint(p) { return p; }
   };
 }
+
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv').config();
+const { PDFParse } = require('pdf-parse');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -101,4 +102,9 @@ app.post('/api/analyze', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+// Suporte para roteamento do Angular (SPA)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/frontend/browser/index.html'));
 });
