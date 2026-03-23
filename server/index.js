@@ -34,18 +34,10 @@ app.post('/api/analyze', async (req, res) => {
           block.source?.type === 'base64'
         ) {
           const buffer = Buffer.from(block.source.data, 'base64');
-          const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
-          const loadingTask = pdfjsLib.getDocument({
-            data: new Uint8Array(buffer),
-          });
-          const pdf = await loadingTask.promise;
-          let pdfText = '';
-          for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const content = await page.getTextContent();
-            pdfText += content.items.map((item) => item.str).join(' ') + '\n';
-          }
-          userText += pdfText;
+          const { PDFParse } = require('pdf-parse');
+          const pdfInstance = new PDFParse({ data: buffer });
+          const data = await pdfInstance.getText();
+          userText += data.text + '\n';
         }
       }
     } else {
