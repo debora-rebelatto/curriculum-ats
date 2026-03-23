@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import html2canvas from 'html2canvas';
@@ -7,11 +7,22 @@ import { jsPDF } from 'jspdf';
 import { AnalyzeService } from '../../services/analyze.service';
 import { AnalyzerResult } from '../../models/analyze.model';
 import { ScoreCardComponent } from '../../components/score-card/score-card.component';
+import { DimensionsChartComponent } from '../../components/dimensions-chart/dimensions-chart.component';
+import { KeywordsListComponent } from '../../components/keywords-list/keywords-list.component';
+import { JobMatchDetailsComponent } from '../../components/job-match-details/job-match-details.component';
+import { ActionSuggestionsComponent } from '../../components/action-suggestions/action-suggestions.component';
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ScoreCardComponent],
+  imports: [
+    TranslateModule,
+    ScoreCardComponent,
+    DimensionsChartComponent,
+    KeywordsListComponent,
+    JobMatchDetailsComponent,
+    ActionSuggestionsComponent
+],
   templateUrl: './results-page.component.html',
 })
 export class ResultsPageComponent implements OnInit {
