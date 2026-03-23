@@ -2,6 +2,25 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv').config();
+const { PDFParse } = require('pdf-parse');
+
+// Polyfill for DOMMatrix in Node.js (needed for pdfjs-dist used by pdf-parse)
+if (typeof global.DOMMatrix === 'undefined') {
+  global.DOMMatrix = class DOMMatrix {
+    constructor(init) {
+      this.a = 1; this.b = 0; this.c = 0; this.d = 1; this.e = 0; this.f = 0;
+      if (Array.isArray(init) && init.length >= 6) {
+        [this.a, this.b, this.c, this.d, this.e, this.f] = init.slice(0, 6);
+      }
+    }
+    multiply() { return this; }
+    translate() { return this; }
+    scale() { return this; }
+    rotate() { return this; }
+    inverse() { return this; }
+    transformPoint(p) { return p; }
+  };
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,7 +53,6 @@ app.post('/api/analyze', async (req, res) => {
           block.source?.type === 'base64'
         ) {
           const buffer = Buffer.from(block.source.data, 'base64');
-          const { PDFParse } = require('pdf-parse');
           const pdfInstance = new PDFParse({ data: buffer });
           const data = await pdfInstance.getText();
           userText += data.text + '\n';
