@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnalyzeService } from '../../services/analyze.service';
@@ -9,13 +9,13 @@ import { JobDetailsFormComponent } from '../../components/job-details-form/job-d
 import { AlertMessageComponent } from '../../components/alert-message/alert-message.component';
 import { PrimaryButtonComponent } from '../../components/primary-button/primary-button.component';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
+import { TextPasteComponent } from '../../components/text-paste/text-paste.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-upload-page',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     TranslateModule,
     SourceToggleComponent,
@@ -23,8 +23,9 @@ import { FormsModule } from '@angular/forms';
     JobDetailsFormComponent,
     AlertMessageComponent,
     PrimaryButtonComponent,
-    LoadingSpinnerComponent
-  ],
+    LoadingSpinnerComponent,
+    TextPasteComponent
+],
   templateUrl: './upload-page.component.html',
 })
 export class UploadPageComponent {

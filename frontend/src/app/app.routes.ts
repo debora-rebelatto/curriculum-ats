@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { resultsGuard } from './guards/results.guard';
 
 export const routes: Routes = [
   {
@@ -7,7 +8,8 @@ export const routes: Routes = [
   },
   {
     path: 'results',
-    loadComponent: () => import('./pages/results-page/results-page.component').then(m => m.ResultsPageComponent)
+    loadComponent: () => import('./pages/results-page/results-page.component').then(m => m.ResultsPageComponent),
+    canActivate: [resultsGuard]
   },
   {
     path: '**',

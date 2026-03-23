@@ -2,11 +2,13 @@ export interface Suggestion {
   priority: 'critical' | 'warning' | 'tip';
   title: string;
   body: string;
+  example: string | null;
 }
 
 export interface Dimension {
   name: string;
   score: number;
+  rationale: string;
 }
 
 export interface AnalyzerResult {
@@ -17,5 +19,6 @@ export interface AnalyzerResult {
   keywords_found: string[];
   keywords_missing: string[];
   job_match_details: string | null;
+  strengths: string[];
   suggestions: Suggestion[];
 }

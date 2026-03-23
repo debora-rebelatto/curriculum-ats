@@ -1,12 +1,8 @@
 <div class="glass-card min-h-[400px] flex flex-col items-center justify-center p-12 text-center">
-  <div class="relative w-28 h-28 mb-10">
-    <div class="absolute inset-0 rounded-full border-t-4 border-brand-500 animate-spin"
-      style="animation-duration: 1.5s;"></div>
-    <div class="absolute inset-2 rounded-full border-r-4 border-indigo-400 animate-spin"
-      style="animation-duration: 2s; animation-direction: reverse;"></div>
-    <div class="absolute inset-4 rounded-full border-b-4 border-sky-300 animate-spin" style="animation-duration: 2.5s;">
-    </div>
-    <div class="absolute inset-0 flex items-center justify-center"><span class="text-3xl">🤖</span></div>
+  <div class="flex items-center justify-center space-x-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-8 py-5 rounded-full shadow-sm border border-slate-200/50 dark:border-slate-700/50 mb-10">
+    <div class="w-3.5 h-3.5 bg-brand-500 rounded-full animate-bounce" style="animation-delay: -0.3s"></div>
+    <div class="w-3.5 h-3.5 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: -0.15s"></div>
+    <div class="w-3.5 h-3.5 bg-sky-400 rounded-full animate-bounce"></div>
   </div>
   <h3 class="text-2xl font-outfit font-medium text-slate-800 dark:text-slate-100 transition-all duration-500">
     {{ 'app.loading.msg' + messageIndex | translate }}

@@ -3,11 +3,11 @@ import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-loading-spinner',
+  selector: 'app-job-match-details',
   standalone: true,
   imports: [TranslateModule],
-  templateUrl: './loading-spinner.component.html'
+  templateUrl: './job-match-details.component.html',
 })
-export class LoadingSpinnerComponent {
-  @Input() messageIndex: number = 0;
+export class JobMatchDetailsComponent {
+  @Input() details: string = '';
 }
