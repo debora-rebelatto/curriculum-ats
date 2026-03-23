@@ -7,12 +7,11 @@ import { jsPDF } from 'jspdf';
 import { AnalyzeService } from '../../services/analyze.service';
 import { AnalyzerResult } from '../../models/analyze.model';
 import { ScoreCardComponent } from '../../components/score-card/score-card.component';
-import { PrimaryButtonComponent } from '../../components/primary-button/primary-button.component';
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ScoreCardComponent, PrimaryButtonComponent],
+  imports: [CommonModule, TranslateModule, ScoreCardComponent],
   templateUrl: './results-page.component.html',
 })
 export class ResultsPageComponent implements OnInit {
