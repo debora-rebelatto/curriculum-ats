@@ -1,5 +1,25 @@
-<div id="results-view" class="space-y-8 pb-10" *ngIf="results">
-  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2">
+@if (results) {
+<div id="results-view" #resultsView class="pb-10 transition-all duration-300 relative overflow-hidden flex flex-col"
+  [ngClass]="isExporting ? 'p-12 sm:p-16 bg-slate-50 dark:bg-slate-900 gap-12' : 'max-w-5xl mx-auto px-4 sm:px-6 gap-10'">
+
+  @if (isExporting) {
+  <div
+    class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-brand-500/10 via-indigo-500/10 to-emerald-500/10 blur-3xl -z-10">
+  </div>
+  <div
+    class="absolute top-12 right-12 text-2xl font-bold font-outfit text-slate-200 dark:text-slate-800 tracking-tighter">
+    {{ 'app.title' | translate }}</div>
+
+  <div class="text-center mb-12 pt-6">
+    <h1
+      class="text-[2.5rem] font-outfit font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400 mb-3 tracking-tight">
+      {{ 'app.results.reportTitle' | translate }}</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">{{ 'app.results.reportSubTitle' | translate }}</p>
+  </div>
+  }
+
+  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2"
+    [class.hidden]="isExporting">
     <button
       class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
       (click)="goBack()">
@@ -21,172 +41,24 @@
       </button>
     </div>
   </div>
-
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score"
-      theme="brand"></app-score-card>
+    <app-score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score" theme="brand" />
     <app-score-card [title]="'app.results.readability' | translate" [score]="results.readability_score"
-      theme="indigo"></app-score-card>
+      theme="indigo" />
     <app-score-card [title]="'app.results.compatibility' | translate" [score]="results.job_match_score"
-      theme="gradient"></app-score-card>
+      theme="gradient" />
   </div>
-
-  <div class="glass-card p-6 md:p-8">
-    <h3
-      class="text-xl font-outfit font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-      <div
-        class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd"
-            d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-            clip-rule="evenodd" />
-        </svg>
-      </div>
-      {{ 'app.results.dimensionsTitle' | translate }}
-    </h3>
-    <div class="space-y-6">
-      <div *ngFor="let d of results.dimensions || []" class="group">
-        <div class="flex justify-between items-end mb-2">
-          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ d.name }}</span>
-          <span class="text-sm font-bold text-slate-900 dark:text-white">{{ d.score }}%</span>
-        </div>
-        <div class="w-full bg-slate-100 dark:bg-slate-700/50 rounded-full h-3 overflow-hidden shadow-inner">
-          <div class="h-full rounded-full transition-all duration-1000 ease-out relative"
-            [ngClass]="d.score >= 75 ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : (d.score >= 50 ? 'bg-gradient-to-r from-amber-400 to-amber-500' : 'bg-gradient-to-r from-rose-400 to-rose-500')"
-            [style.width.%]="d.score">
-            <div class="absolute inset-0 bg-white/20 w-full h-full"
-              style="background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent); background-size: 1rem 1rem;">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="glass-card p-6 md:p-8">
-    <h3
-      class="text-xl font-outfit font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-      <div
-        class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd"
-            d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
-            clip-rule="evenodd" />
-        </svg>
-      </div>
-      {{ 'app.results.keywordsTitle' | translate }}
-    </h3>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="p-5 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
-        <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
-          <div
-            class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd" />
-            </svg>
-          </div>
-          {{ 'app.results.keywordsFound' | translate }}
-        </h4>
-        <div class="flex flex-wrap gap-2">
-          <span *ngFor="let k of results.keywords_found || []"
-            class="px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/50 rounded-xl text-sm font-medium shadow-sm">
-            {{ k }}
-          </span>
-          <span *ngIf="!(results.keywords_found?.length)" class="text-sm text-slate-500 italic block mt-2">{{
-            'app.results.keywordsNoneFound' | translate }}</span>
-        </div>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
-        <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
-          <div
-            class="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clip-rule="evenodd" />
-            </svg>
-          </div>
-          {{ 'app.results.keywordsMissing' | translate }}
-        </h4>
-        <div class="flex flex-wrap gap-2">
-          <span *ngFor="let k of results.keywords_missing || []"
-            class="px-3 py-1.5 bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border border-rose-200/60 dark:border-rose-800/50 rounded-xl text-sm font-medium shadow-sm">
-            {{ k }}
-          </span>
-          <span *ngIf="!(results.keywords_missing?.length)" class="text-sm text-slate-500 italic block mt-2">{{
-            'app.results.keywordsNoneMissing' | translate }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="glass-card p-6 md:p-8" *ngIf="results.job_match_details">
-    <h3
-      class="text-xl font-outfit font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-      <div
-        class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd"
-            d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z"
-            clip-rule="evenodd" />
-        </svg>
-      </div>
-      {{ 'app.results.jobMatchTitle' | translate }}
-    </h3>
-    <p
-      class="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 p-4 rounded-xl bg-amber-50/50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30">
-      {{ results.job_match_details }}
-    </p>
-  </div>
-
-  <div class="glass-card p-6 md:p-8" *ngIf="results.suggestions?.length">
-    <h3
-      class="text-xl font-outfit font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-      <div
-        class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-            clip-rule="evenodd" />
-        </svg>
-      </div>
-      {{ 'app.results.suggestionsTitle' | translate }}
-    </h3>
-    <div class="space-y-4">
-      <div *ngFor="let s of results.suggestions"
-        class="p-5 rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-md" [ngClass]="{
-             'bg-rose-50/50 dark:bg-rose-900/10 border-rose-200 dark:border-rose-800/50': s.priority === 'critical',
-             'bg-amber-50/50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800/50': s.priority === 'warning',
-             'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/50': s.priority === 'tip'
-           }">
-        <h5 class="font-semibold text-[15px] mb-2 flex items-center gap-2" [ngClass]="{
-              'text-rose-900 dark:text-rose-400': s.priority === 'critical',
-              'text-amber-900 dark:text-amber-400': s.priority === 'warning',
-              'text-emerald-900 dark:text-emerald-400': s.priority === 'tip'
-            }">
-          <div class="flex items-center justify-center w-7 h-7 rounded-full shadow-sm" [ngClass]="{
-                 'bg-rose-100 dark:bg-rose-900/50': s.priority === 'critical',
-                 'bg-amber-100 dark:bg-amber-900/50': s.priority === 'warning',
-                 'bg-emerald-100 dark:bg-emerald-900/50': s.priority === 'tip'
-               }">
-            <span *ngIf="s.priority === 'critical'" class="text-sm">🚨</span>
-            <span *ngIf="s.priority === 'warning'" class="text-sm">⚠️</span>
-            <span *ngIf="s.priority === 'tip'" class="text-sm">💡</span>
-          </div>
-          {{ s.title }}
-        </h5>
-        <p class="text-[14.5px] leading-relaxed ml-9" [ngClass]="{
-             'text-rose-800/90 dark:text-rose-200/80': s.priority === 'critical',
-             'text-amber-800/90 dark:text-amber-200/80': s.priority === 'warning',
-             'text-emerald-800/90 dark:text-emerald-200/80': s.priority === 'tip'
-           }">
-          {{ s.body }}
-        </p>
-      </div>
-    </div>
-  </div>
+  <app-dimensions-chart [dimensions]="results.dimensions || []" />
+  <app-keywords-list [keywordsFound]="results.keywords_found || []"
+    [keywordsMissing]="results.keywords_missing || []" />
+  @if (results.job_match_details) {
+  <app-job-match-details [details]="results.job_match_details" />
+  }
+  @if (results.strengths.length) {
+  <app-strengths-list [strengths]="results.strengths" />
+  }
+  @if (results.suggestions.length) {
+  <app-suggestions-list [suggestions]="results.suggestions" />
+  }
 </div>
+}

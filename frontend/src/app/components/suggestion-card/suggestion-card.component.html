@@ -1,0 +1,19 @@
+<div class="p-5 rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-md" [class]="config.card">
+
+  <h5 class="font-semibold text-[15px] mb-2 flex items-center gap-2" [class]="config.title">
+
+    <div class="flex items-center justify-center w-7 h-7 rounded-full shadow-sm" [class]="config.iconBg">
+      <span class="text-sm">{{ config.icon }}</span>
+    </div>
+
+    {{ suggestion.title }}
+  </h5>
+
+  <p class="text-[14.5px] leading-relaxed ml-9" [class]="config.body">
+    {{ suggestion.body }}
+  </p>
+
+  @if (suggestion.example) {
+  <app-suggestion-example [example]="suggestion.example" />
+  }
+</div>
