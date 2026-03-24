@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-job-match-details',
+  selector: 'job-match-details',
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './job-match-details.component.html',

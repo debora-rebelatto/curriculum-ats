@@ -4,7 +4,7 @@ import { SuggestionCardComponent } from '../suggestion-card/suggestion-card.comp
 import { Suggestion } from '../suggestion-card/suggestion.types';
 
 @Component({
-  selector: 'app-suggestions-list',
+  selector: 'suggestions-list',
   standalone: true,
   imports: [TranslatePipe, SuggestionCardComponent],
   templateUrl: './suggestions-list.component.html',

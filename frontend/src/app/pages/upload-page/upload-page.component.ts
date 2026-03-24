@@ -13,7 +13,7 @@ import { TextPasteComponent } from '../../components/text-paste/text-paste.compo
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-upload-page',
+  selector: 'upload-page',
   standalone: true,
   imports: [
     FormsModule,
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     PrimaryButtonComponent,
     LoadingSpinnerComponent,
     TextPasteComponent
-],
+  ],
   templateUrl: './upload-page.component.html',
 })
 export class UploadPageComponent {

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-job-details-form',
+  selector: 'job-details-form',
   standalone: true,
   imports: [FormsModule, TranslateModule],
   templateUrl: './job-details-form.component.html'
