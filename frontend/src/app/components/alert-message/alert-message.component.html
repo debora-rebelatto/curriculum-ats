@@ -1,17 +1,10 @@
 @if (message) {
-  <div class="p-4 rounded-xl text-sm flex items-center gap-3 animate-fade-in"
-    [ngClass]="type === 'error' ? 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400' : 'bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400'">
-    @if (type === 'error') {
-      <span class="material-icons h-5 w-5 flex-shrink-0">error_outline</span>
-      }
-      @if (type === 'warning') {
-        <span class="material-icons h-5 w-5 flex-shrink-0">warning_amber</span>
-        }
-        @if (message.includes('error.') || message.includes('app.')) {
-          <span>{{ message | translate }}</span>
-        }
-        @if (!message.includes('error.') && !message.includes('app.')) {
-          <span>{{ message }}</span>
-        }
-      </div>
+  <div class="p-4 rounded-xl text-sm flex items-center gap-3 animate-fade-in bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400">
+    <span class="material-icons h-5 w-5 flex-shrink-0">error_outline</span>
+    @if (message.includes('error.') || message.includes('app.')) {
+      <span>{{ message | translate }}</span>
+    } @else {
+      <span>{{ message }}</span>
     }
+  </div>
+}

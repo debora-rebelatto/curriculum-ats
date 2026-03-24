@@ -15,7 +15,7 @@
     <div class="pt-4 border-t border-slate-100 dark:border-slate-800/50">
       <job-details-form [(jdText)]="jdText" [(roleText)]="roleText" />
     </div>
-    <alert-message [message]="errorBox" type="error" />
+    <alert-message [message]="errorBox" />
     <div class="pt-2">
       <primary-button (clicked)="analyze()">{{ 'app.form.analyzeBtn' | translate }}</primary-button>
     </div>

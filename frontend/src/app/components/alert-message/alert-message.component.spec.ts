@@ -42,19 +42,10 @@ describe('AlertMessageComponent', () => {
     expect(compiled.textContent).toContain('Test Error Message');
   });
 
-  it('should show error icon when type is error', () => {
-    component.type = 'error';
+  it('should show error icon', () => {
     component.message = 'Error';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.material-icons')?.textContent).toBe('error_outline');
-  });
-
-  it('should show warning icon when type is warning', () => {
-    component.type = 'warning';
-    component.message = 'Warning';
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.material-icons')?.textContent).toBe('warning_amber');
   });
 });
