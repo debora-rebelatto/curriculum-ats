@@ -28,14 +28,14 @@
       class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2"
       [class.hidden]="isExporting">
       <button
-        class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
+        class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
         (click)="goBack()">
         <span class="material-icons text-[18px]">arrow_back</span>
         {{ 'app.results.newAnalysis' | translate }}
       </button>
       <div class="flex gap-3 w-full sm:w-auto">
         <button
-          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
+          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
           (click)="exportImage()">
           <span class="material-icons text-[18px]">image</span>
           <span class="hidden sm:inline">{{ 'app.results.exportImg' | translate }}</span>
