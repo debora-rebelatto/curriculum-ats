@@ -24,14 +24,14 @@ describe('ScoreCardComponent', () => {
     component.title = 'Test Score';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h3')?.textContent).toContain('Test Score');
+    expect(compiled.querySelector('h4')?.textContent).toContain('Test Score');
   });
 
   it('should display the score', () => {
     component.score = 85;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.text-5xl')?.textContent).toContain('85');
+    expect(compiled.querySelector('.text-\\[3\\.5rem\\]')?.textContent).toContain('85');
   });
 
   it('should return correct color for high score', () => {
