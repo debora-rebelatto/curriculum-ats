@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'text-paste',
+  selector: 'app-text-paste',
   standalone: true,
   imports: [FormsModule, TranslateModule],
   templateUrl: './text-paste.component.html',

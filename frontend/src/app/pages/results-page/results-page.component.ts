@@ -15,7 +15,7 @@ import { StrengthsListComponent } from '../../components/strengths-list/strength
 import { SuggestionsListComponent } from '../../components/suggestions-list/suggestions-list.component';
 
 @Component({
-  selector: 'results-page',
+  selector: 'app-results-page',
   standalone: true,
   imports: [
     NgClass,

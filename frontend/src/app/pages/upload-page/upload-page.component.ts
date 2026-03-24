@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     PrimaryButtonComponent,
     LoadingSpinnerComponent,
     TextPasteComponent
-],
+  ],
   templateUrl: './upload-page.component.html',
 })
 export class UploadPageComponent {
