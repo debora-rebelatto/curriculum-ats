@@ -17,7 +17,7 @@
       "jdPlaceholder": "Para análise de aderência à vaga...",
       "roleLabel": "Cargo / Área alvo",
       "rolePlaceholder": "Ex: Desenvolvedor Senior, Analista Comercial...",
-      "analyzeBtn": "✨ Gerar Análise Inteligente"
+      "analyzeBtn": "Gerar Análise"
     },
     "loading": {
       "msg0": "Lendo o currículo...",

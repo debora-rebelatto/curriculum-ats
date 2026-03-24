@@ -46,7 +46,7 @@ PORT=3000
 npm run build
 ```
 
-*Nota: O comando `npm run build` instalará as dependências do frontend e gerará o build de produção.*
+_Nota: O comando `npm run build` instalará as dependências do frontend e gerará o build de produção._
 
 ## 🏃 Executando o Projeto
 
@@ -63,13 +63,14 @@ O frontend estará disponível em [http://localhost:4200](http://localhost:4200)
 ```bash
 npm start
 ```
+
 Acesse: [http://localhost:3000](http://localhost:3000)
 
 ## 📝 Como Usar
 
 1. Escolha entre **Upload PDF** ou **Colar Texto**.
 2. Opcionalmente, adicione a **Descrição da Vaga** e o **Cargo Alvo** para uma análise de aderência.
-3. Clique em **✨ Gerar Análise Inteligente**.
+3. Clique em **Gerar Análise**.
 4. Visualize o relatório detalhado e **exporte como Imagem ou PDF**.
 
 ## 📊 O que é analisado
