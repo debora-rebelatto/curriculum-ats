@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-source-toggle',
+  selector: 'source-toggle',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './source-toggle.component.html'

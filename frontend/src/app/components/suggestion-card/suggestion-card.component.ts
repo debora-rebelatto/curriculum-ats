@@ -3,7 +3,7 @@ import { Suggestion, PRIORITY_CONFIG } from './suggestion.types';
 import { SuggestionExampleComponent } from '../suggestion-example/suggestion-example.component';
 
 @Component({
-	selector: 'app-suggestion-card',
+	selector: 'suggestion-card',
 	standalone: true,
 	imports: [SuggestionExampleComponent],
 	templateUrl: './suggestion-card.component.html',

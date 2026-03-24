@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-keywords-list',
+  selector: 'keywords-list',
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './keywords-list.component.html',

@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-pdf-upload',
+  selector: 'pdf-upload',
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './pdf-upload.component.html'

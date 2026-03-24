@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Dimension } from '../../models/analyze.model';
 
 @Component({
-  selector: 'app-dimensions-chart',
+  selector: 'dimensions-chart',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './dimensions-chart.component.html',

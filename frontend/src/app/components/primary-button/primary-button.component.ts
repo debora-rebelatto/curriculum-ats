@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-primary-button',
+  selector: 'primary-button',
   standalone: true,
   imports: [],
   templateUrl: './primary-button.component.html'

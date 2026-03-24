@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-strengths-list',
+  selector: 'strengths-list',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './strengths-list.component.html',

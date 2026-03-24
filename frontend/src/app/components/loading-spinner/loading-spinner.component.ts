@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-loading-spinner',
+  selector: 'loading-spinner',
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './loading-spinner.component.html'
