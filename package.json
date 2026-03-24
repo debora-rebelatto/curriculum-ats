@@ -8,6 +8,7 @@
     "dev": "concurrently \"npx nodemon server/index.js\" \"npm run dev:frontend\"",
     "dev:frontend": "npm --prefix frontend start",
     "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "test": "npm --prefix frontend test",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
