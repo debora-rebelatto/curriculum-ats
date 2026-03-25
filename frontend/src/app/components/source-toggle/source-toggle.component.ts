@@ -11,4 +11,9 @@ import { TranslateModule } from '@ngx-translate/core';
 export class SourceToggleComponent {
   @Input() activeTab: 'upload' | 'paste' = 'upload';
   @Output() tabChange = new EventEmitter<'upload' | 'paste'>();
+
+  readonly tabs = new Map<'upload' | 'paste', string>([
+    ['upload', 'app.tabs.upload'],
+    ['paste', 'app.tabs.paste'],
+  ]);
 }

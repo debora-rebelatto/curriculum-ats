@@ -2,35 +2,20 @@
   class="relative flex p-1.5 bg-app-bg3 rounded-xl w-full sm:w-max mx-auto md:mx-0 shadow-inner overflow-hidden mb-8"
 >
   <div
-    class="absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-lg shadow-sm ring-1 ring-app-border2 transition-all duration-300 ease-out z-0"
-    [ngClass]="
-      activeTab === 'upload'
-        ? 'translate-x-0 bg-app-bg2'
-        : 'translate-x-full bg-app-bg2'
-    "
+    class="absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-lg shadow-sm ring-1 ring-app-border2 bg-app-bg2 transition-all duration-300 ease-out z-0"
+    [class.translate-x-full]="activeTab === 'paste'"
+    [class.translate-x-0]="activeTab === 'upload'"
   ></div>
 
-  <button
-    class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
-    [ngClass]="
-      activeTab === 'upload'
-        ? 'text-accent'
-        : 'text-app-text3 hover:text-app-text2'
-    "
-    (click)="tabChange.emit('upload')"
-  >
-    {{ 'app.tabs.upload' | translate }}
-  </button>
-
-  <button
-    class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
-    [ngClass]="
-      activeTab === 'paste'
-        ? 'text-accent'
-        : 'text-app-text3 hover:text-app-text2'
-    "
-    (click)="tabChange.emit('paste')"
-  >
-    {{ 'app.tabs.paste' | translate }}
-  </button>
+  @for (tab of tabs; track tab[0]) {
+    <button
+      class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
+      [class.text-accent]="activeTab === tab[0]"
+      [class.text-app-text3]="activeTab !== tab[0]"
+      [class.hover:text-app-text2]="activeTab !== tab[0]"
+      (click)="tabChange.emit(tab[0])"
+    >
+      {{ tab[1] | translate }}
+    </button>
+  }
 </div>
