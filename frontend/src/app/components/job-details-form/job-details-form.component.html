@@ -1,20 +1,26 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
   <div>
-    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+    <label class="block text-sm font-medium text-app-text2 mb-2">
       {{ 'app.form.jdLabel' | translate }}
     </label>
-    <textarea [ngModel]="jdText" (ngModelChange)="jdTextChange.emit($event)" rows="4"
-      class="w-full rounded-xl border-slate-300 dark:border-slate-600 bg-white/50 dark:bg-slate-900/50 shadow-sm focus:border-brand-500 focus:ring-brand-500 dark:text-white p-3 transition-colors outline-none"
+    <textarea
+      [ngModel]="jdText"
+      (ngModelChange)="jdTextChange.emit($event)"
+      rows="4"
+      class="w-full rounded-xl border-app-border2 bg-app-bg shadow-inner focus:border-silver focus:ring-silver text-app-text p-3 transition-colors outline-none"
       [placeholder]="'app.form.jdPlaceholder' | translate">
-        </textarea>
+    </textarea>
   </div>
   <div>
-    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+    <label class="block text-sm font-medium text-app-text2 mb-2">
       {{ 'app.form.roleLabel' | translate }}
     </label>
-    <textarea [ngModel]="roleText" (ngModelChange)="roleTextChange.emit($event)" rows="4"
-      class="w-full rounded-xl border-slate-300 dark:border-slate-600 bg-white/50 dark:bg-slate-900/50 shadow-sm focus:border-brand-500 focus:ring-brand-500 dark:text-white p-3 transition-colors outline-none"
+    <textarea
+      [ngModel]="roleText"
+      (ngModelChange)="roleTextChange.emit($event)"
+      rows="4"
+      class="w-full rounded-xl border-app-border2 bg-app-bg shadow-inner focus:border-silver focus:ring-silver text-app-text p-3 transition-colors outline-none"
       [placeholder]="'app.form.rolePlaceholder' | translate">
-        </textarea>
+    </textarea>
   </div>
 </div>

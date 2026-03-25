@@ -10,5 +10,4 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class AlertMessageComponent {
   @Input() message: string | null = null;
-  @Input() type: 'error' | 'warning' = 'error';
 }

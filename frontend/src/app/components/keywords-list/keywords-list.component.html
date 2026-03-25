@@ -1,6 +1,6 @@
-<div class="glass-card p-6 md:p-8">
+<div class="app-card p-6 md:p-8">
   <h3 class="text-xl font-outfit font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-    <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+    <div class="w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-900/40 flex items-center justify-center text-accent-600 dark:text-accent-400">
       <span class="material-icons text-[20px]">sell</span>
     </div>
     {{ 'app.results.keywordsTitle' | translate }}
@@ -9,38 +9,42 @@
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <div class="p-5 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
       <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
-        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600">
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-success-100 dark:bg-success-900/40 text-success-600">
           <span class="material-icons text-[18px]">check_circle</span>
         </div>
         {{ 'app.results.keywordsFound' | translate }}
       </h4>
       <div class="flex flex-wrap gap-2">
         @for (k of keywordsFound; track k) {
-          <span class="px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/50 rounded-xl text-sm font-medium shadow-sm">
+          <span class="tag found px-3 py-1.5 rounded-xl text-sm font-medium shadow-sm">
             {{ k }}
           </span>
         }
         @if (!keywordsFound.length) {
-          <span class="text-sm text-slate-500 italic block mt-2">{{ 'app.results.keywordsNoneFound' | translate }}</span>
+          <span class="text-sm text-slate-500 italic block mt-2">
+            {{ 'app.results.keywordsNoneFound' | translate }}
+          </span>
         }
       </div>
     </div>
 
     <div class="p-5 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
       <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
-        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-600">
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-error-100 dark:bg-error-900/40 text-error-600">
           <span class="material-icons text-[18px]">cancel</span>
         </div>
         {{ 'app.results.keywordsMissing' | translate }}
       </h4>
       <div class="flex flex-wrap gap-2">
         @for (k of keywordsMissing; track k) {
-          <span class="px-3 py-1.5 bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border border-rose-200/60 dark:border-rose-800/50 rounded-xl text-sm font-medium shadow-sm">
+          <span class="tag missing px-3 py-1.5 rounded-xl text-sm font-medium shadow-sm">
             {{ k }}
           </span>
         }
         @if (!keywordsMissing.length) {
-          <span class="text-sm text-slate-500 italic block mt-2">{{ 'app.results.keywordsNoneMissing' | translate }}</span>
+          <span class="text-sm text-slate-500 italic block mt-2">
+            {{ 'app.results.keywordsNoneMissing' | translate }}
+          </span>
         }
       </div>
     </div>

@@ -53,10 +53,9 @@ export class ResultsPageComponent implements OnInit {
 
     this.isExporting = true;
     setTimeout(() => {
-      const isDark = document.documentElement.classList.contains('dark');
       html2canvas(el, {
         scale: 2,
-        backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+        backgroundColor: '#181a22',
         windowWidth: 1200,
         useCORS: true
       }).then(canvas => {
@@ -75,10 +74,9 @@ export class ResultsPageComponent implements OnInit {
 
     this.isExporting = true;
     setTimeout(() => {
-      const isDark = document.documentElement.classList.contains('dark');
       html2canvas(el, {
         scale: 2,
-        backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+        backgroundColor: '#181a22',
         windowWidth: 1200,
         useCORS: true
       }).then(canvas => {

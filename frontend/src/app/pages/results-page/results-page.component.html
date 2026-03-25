@@ -1,73 +1,80 @@
 @if (results) {
-<div id="results-view" #resultsView class="pb-10 transition-all duration-300 relative overflow-hidden flex flex-col"
-  [ngClass]="
+  <div
+    id="results-view"
+    #resultsView
+    class="pb-10 transition-all duration-300 relative overflow-hidden flex flex-col"
+    [ngClass]="
       isExporting
-        ? 'p-12 sm:p-16 bg-slate-50 dark:bg-slate-900 gap-12'
+        ? 'p-12 sm:p-16 bg-app-bg gap-12'
         : 'max-w-5xl mx-auto px-4 sm:px-6 gap-10'
     ">
-  @if (isExporting) {
-  <div
-    class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-brand-500/10 via-indigo-500/10 to-emerald-500/10 blur-3xl -z-10">
-  </div>
-  <div
-    class="absolute top-12 right-12 text-2xl font-bold font-outfit text-slate-200 dark:text-slate-800 tracking-tighter">
-    {{ 'app.title' | translate }}
-  </div>
+    @if (isExporting) {
+      <div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-silver/10 via-mint/10 to-silver/10 blur-3xl -z-10"></div>
+      <div class="absolute top-12 right-12 text-2xl font-bold font-outfit text-app-text3 tracking-tighter">
+        {{ 'app.title' | translate }}
+      </div>
 
-  <div class="text-center mb-12 pt-6">
-    <h1
-      class="text-[2.5rem] font-outfit font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400 mb-3 tracking-tight">
-      {{ 'app.results.reportTitle' | translate }}
-    </h1>
-    <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">
-      {{ 'app.results.reportSubTitle' | translate }}
-    </p>
-  </div>
-  }
+      <div class="text-center mb-12 pt-6">
+        <h1 class="text-[2.5rem] font-outfit font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-silver to-mint mb-3 tracking-tight">
+          {{ 'app.results.reportTitle' | translate }}
+        </h1>
+        <p class="text-lg text-app-text2 font-medium">
+          {{ 'app.results.reportSubTitle' | translate }}
+        </p>
+      </div>
+    }
 
-  <div class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2"
-    [class.hidden]="isExporting">
-    <button
-      class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
-      (click)="goBack()">
-      <span class="material-icons text-[18px]">arrow_back</span>
-      {{ 'app.results.newAnalysis' | translate }}
-    </button>
-    <div class="flex gap-3 w-full sm:w-auto">
+    <div
+      class="results-header flex flex-col sm:flex-row justify-between items-center gap-4 bg-transparent py-2"
+      [class.hidden]="isExporting">
       <button
-        class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow transition-all"
-        (click)="exportImage()">
-        <span class="material-icons text-[18px]">image</span>
-        <span class="hidden sm:inline">{{
-          'app.results.exportImg' | translate
-          }}</span>
+        class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
+        (click)="goBack()">
+        <span class="material-icons text-[18px]">arrow_back</span>
+        {{ 'app.results.newAnalysis' | translate }}
       </button>
-      <button
-        class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-brand-600 border border-brand-700 rounded-xl shadow-sm hover:bg-brand-700 hover:shadow transition-all"
-        (click)="exportPDF()">
-        <span class="material-icons text-[18px]">description</span>
-        <span class="hidden sm:inline">{{
-          'app.results.exportPdf' | translate
-          }}</span>
-      </button>
+      <div class="flex gap-3 w-full sm:w-auto">
+        <button
+          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
+          (click)="exportImage()">
+          <span class="material-icons text-[18px]">image</span>
+          <span class="hidden sm:inline">{{ 'app.results.exportImg' | translate }}</span>
+        </button>
+        <button
+          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
+          (click)="exportPDF()">
+          <span class="material-icons text-[18px]">description</span>
+          <span class="hidden sm:inline">{{ 'app.results.exportPdf' | translate }}</span>
+        </button>
+
+      </div>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <score-card
+        [title]="'app.results.scoreAts' | translate"
+        [score]="results.ats_score"
+        theme="brand" />
+      <score-card
+        [title]="'app.results.readability' | translate"
+        [score]="results.readability_score"
+        theme="indigo" />
+      <score-card
+        [title]="'app.results.compatibility' | translate"
+        [score]="results.job_match_score"
+        theme="gradient" />
+    </div>
+    <dimensions-chart [dimensions]="results.dimensions || []" />
+    <app-keywords-list
+      [keywordsFound]="results.keywords_found || []"
+      [keywordsMissing]="results.keywords_missing || []" />
+    @if (results.job_match_details) {
+      <job-match-details [details]="results.job_match_details" />
+    }
+    @if (results.strengths.length) {
+      <strengths-list [strengths]="results.strengths" />
+    }
+    @if (results.suggestions.length) {
+      <suggestions-list [suggestions]="results.suggestions" />
+    }
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <score-card [title]="'app.results.scoreAts' | translate" [score]="results.ats_score" theme="brand" />
-    <score-card [title]="'app.results.readability' | translate" [score]="results.readability_score" theme="indigo" />
-    <score-card [title]="'app.results.compatibility' | translate" [score]="results.job_match_score" theme="gradient" />
-  </div>
-  <dimensions-chart [dimensions]="results.dimensions || []" />
-  <app-keywords-list [keywordsFound]="results.keywords_found || []"
-    [keywordsMissing]="results.keywords_missing || []" />
-  @if (results.job_match_details) {
-  <job-match-details [details]="results.job_match_details" />
-  }
-  @if (results.strengths.length) {
-  <strengths-list [strengths]="results.strengths" />
-  }
-  @if (results.suggestions.length) {
-  <suggestions-list [suggestions]="results.suggestions" />
-  }
-</div>
 }
