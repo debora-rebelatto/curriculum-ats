@@ -20,10 +20,10 @@ jobs:
           cache: 'npm'
 
       - name: Install root dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Install frontend dependencies
-        run: npm install --prefix frontend --legacy-peer-deps
+        run: npm install --prefix frontend
 
       - name: Run lint/format check
         run: npm run format:check
