@@ -8,7 +8,7 @@ describe('ScoreCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScoreCardComponent, CommonModule]
+      imports: [ScoreCardComponent, CommonModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScoreCardComponent);
@@ -31,7 +31,9 @@ describe('ScoreCardComponent', () => {
     component.score = 85;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.text-\\[3\\.5rem\\]')?.textContent).toContain('85');
+    expect(
+      compiled.querySelector('.text-\\[3\\.5rem\\]')?.textContent
+    ).toContain('85');
   });
 
   it('should return correct color for high score', () => {

@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       fontFamily: {
@@ -85,7 +83,7 @@ module.exports = {
           700: '#be123c',
           800: '#9f1239',
           900: '#881337',
-        }
+        },
       },
       animation: {
         'gradient-x': 'gradient-x 3s ease infinite',
@@ -94,15 +92,15 @@ module.exports = {
         'gradient-x': {
           '0%, 100%': {
             'background-size': '200% 200%',
-            'background-position': 'left center'
+            'background-position': 'left center',
           },
           '50%': {
             'background-size': '200% 200%',
-            'background-position': 'right center'
+            'background-position': 'right center',
           },
-        }
-      }
+        },
+      },
     },
   },
   plugins: [],
-}
+};

@@ -3,17 +3,34 @@
 if (typeof global.DOMMatrix === 'undefined') {
   global.DOMMatrix = class DOMMatrix {
     constructor(init) {
-      this.a = 1; this.b = 0; this.c = 0; this.d = 1; this.e = 0; this.f = 0;
+      this.a = 1;
+      this.b = 0;
+      this.c = 0;
+      this.d = 1;
+      this.e = 0;
+      this.f = 0;
       if (Array.isArray(init) && init.length >= 6) {
         [this.a, this.b, this.c, this.d, this.e, this.f] = init.slice(0, 6);
       }
     }
-    multiply() { return this; }
-    translate() { return this; }
-    scale() { return this; }
-    rotate() { return this; }
-    inverse() { return this; }
-    transformPoint(p) { return p; }
+    multiply() {
+      return this;
+    }
+    translate() {
+      return this;
+    }
+    scale() {
+      return this;
+    }
+    rotate() {
+      return this;
+    }
+    inverse() {
+      return this;
+    }
+    transformPoint(p) {
+      return p;
+    }
   };
 }
 
@@ -30,7 +47,9 @@ const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static(path.join(__dirname, '../frontend/dist/frontend/browser')));
+app.use(
+  express.static(path.join(__dirname, '../frontend/dist/frontend/browser'))
+);
 
 app.post('/api/analyze', async (req, res) => {
   if (!GROQ_API_KEY) {
@@ -106,5 +125,7 @@ app.listen(PORT, () => {
 
 // Suporte para roteamento do Angular (SPA)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/frontend/browser/index.html'));
+  res.sendFile(
+    path.join(__dirname, '../frontend/dist/frontend/browser/index.html')
+  );
 });

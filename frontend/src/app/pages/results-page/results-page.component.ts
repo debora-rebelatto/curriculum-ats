@@ -1,4 +1,10 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgClass } from '@angular/common';
 
 import { Router } from '@angular/router';
@@ -25,7 +31,7 @@ import { SuggestionsListComponent } from '../../components/suggestions-list/sugg
     KeywordsListComponent,
     JobMatchDetailsComponent,
     SuggestionsListComponent,
-    StrengthsListComponent
+    StrengthsListComponent,
   ],
   templateUrl: './results-page.component.html',
 })
@@ -33,7 +39,8 @@ export class ResultsPageComponent implements OnInit {
   private analyzeService = inject(AnalyzeService);
   private router = inject(Router);
 
-  @ViewChild('resultsView', { static: false }) resultsView!: ElementRef<HTMLElement>;
+  @ViewChild('resultsView', { static: false })
+  resultsView!: ElementRef<HTMLElement>;
 
   results: AnalyzerResult | null = null;
   isExporting = false;
@@ -57,14 +64,16 @@ export class ResultsPageComponent implements OnInit {
         scale: 2,
         backgroundColor: '#181a22',
         windowWidth: 1200,
-        useCORS: true
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'ats-analise.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        this.isExporting = false;
-      }).catch(() => this.isExporting = false);
+        useCORS: true,
+      })
+        .then((canvas) => {
+          const link = document.createElement('a');
+          link.download = 'ats-analise.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          this.isExporting = false;
+        })
+        .catch(() => (this.isExporting = false));
     }, 150);
   }
 
@@ -78,14 +87,16 @@ export class ResultsPageComponent implements OnInit {
         scale: 2,
         backgroundColor: '#181a22',
         windowWidth: 1200,
-        useCORS: true
-      }).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
-        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-        pdf.save('ats-analise.pdf');
-        this.isExporting = false;
-      }).catch(() => this.isExporting = false);
+        useCORS: true,
+      })
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
+          pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+          pdf.save('ats-analise.pdf');
+          this.isExporting = false;
+        })
+        .catch(() => (this.isExporting = false));
     }, 150);
   }
 }

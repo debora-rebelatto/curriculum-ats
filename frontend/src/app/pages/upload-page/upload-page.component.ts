@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     AlertMessageComponent,
     PrimaryButtonComponent,
     LoadingSpinnerComponent,
-    TextPasteComponent
+    TextPasteComponent,
   ],
   templateUrl: './upload-page.component.html',
 })
@@ -47,7 +47,7 @@ export class UploadPageComponent {
     this.activeTab = tab;
   }
 
-  handleFile(event: { file: File, base64: string, name: string }) {
+  handleFile(event: { file: File; base64: string; name: string }) {
     this.fileName = event.name;
     this.pdfBase64 = event.base64;
   }
@@ -83,7 +83,12 @@ export class UploadPageComponent {
     try {
       const b64 = this.activeTab === 'upload' ? this.pdfBase64 : null;
       const rText = this.activeTab === 'paste' ? this.resumeText : '';
-      await this.analyzeService.analyzeResume(b64, rText, this.jdText, this.roleText);
+      await this.analyzeService.analyzeResume(
+        b64,
+        rText,
+        this.jdText,
+        this.roleText
+      );
 
       this.stopLoading();
       this.router.navigate(['/results']);

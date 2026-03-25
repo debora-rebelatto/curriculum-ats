@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'score-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './score-card.component.html'
+  templateUrl: './score-card.component.html',
 })
 export class ScoreCardComponent {
   @Input() title: string = '';
@@ -14,7 +14,7 @@ export class ScoreCardComponent {
 
   getScoreColor(s: number | null | undefined): string {
     if (s === null || s === undefined) return 'text-app-text3';
-    return s >= 75 ? 'text-mint' : (s >= 50 ? 'text-accent' : 'text-ruby');
+    return s >= 75 ? 'text-mint' : s >= 50 ? 'text-accent' : 'text-ruby';
   }
 
   getBlobClasses(): string {

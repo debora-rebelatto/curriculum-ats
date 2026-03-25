@@ -18,8 +18,8 @@
   --text: #e8e4d8;
   --text2: #8890a8;
   --text3: #6a6e80;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.13);
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.13);
   --radius: 8px;
   --radius-lg: 12px;
   --green: #a0b8d0;
@@ -45,17 +45,55 @@
   }
 
   /* Tag Styles */
-  .tag.found { background: #0e2018; color: #7ecfa0; border: 0.5px solid #1e4030; }
-  .tag.missing { background: #280e0e; color: #d07070; border: 0.5px solid #4a1818; }
+  .tag.found {
+    background: #0e2018;
+    color: #7ecfa0;
+    border: 0.5px solid #1e4030;
+  }
+  .tag.missing {
+    background: #280e0e;
+    color: #d07070;
+    border: 0.5px solid #4a1818;
+  }
 
   /* Suggestion Styles */
-  .suggestion.critical { background: #280e0e; color: #d07070; border-color: var(--border); border-left: 3px solid #d07070; }
-  .suggestion.warning  { background: #1a1808; color: var(--yellow); border-color: var(--border); border-left: 3px solid var(--yellow); }
-  .suggestion.tip { background: #101820; color: #a0b8d0; border-color: var(--border); border-left: 3px solid #a0b8d0; border-radius: var(--radius); }
+  .suggestion.critical {
+    background: #280e0e;
+    color: #d07070;
+    border-color: var(--border);
+    border-left: 3px solid #d07070;
+  }
+  .suggestion.warning {
+    background: #1a1808;
+    color: var(--yellow);
+    border-color: var(--border);
+    border-left: 3px solid var(--yellow);
+  }
+  .suggestion.tip {
+    background: #101820;
+    color: #a0b8d0;
+    border-color: var(--border);
+    border-left: 3px solid #a0b8d0;
+    border-radius: var(--radius);
+  }
 
   /* Analyze Button */
-  .analyze-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 500; background: #a0b8d0; color: #181a22; border: none; border-radius: var(--radius); cursor: pointer; transition: opacity 0.15s; margin-top: 0.5rem; }
-  .analyze-btn:hover { opacity: 0.9; }
+  .analyze-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #a0b8d0;
+    color: #181a22;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 0.5rem;
+  }
+  .analyze-btn:hover {
+    opacity: 0.9;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -63,7 +101,7 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-slate-200 dark:bg-slate-700 rounded-full cursor-pointer;

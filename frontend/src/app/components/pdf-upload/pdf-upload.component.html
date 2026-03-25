@@ -6,10 +6,14 @@
   <div
     class="flex items-center gap-4 px-4 py-3 bg-app-bg2 border border-app-border rounded-xl cursor-pointer transition-all duration-200 hover:bg-app-bg3 hover:border-silver group"
     [class.border-silver]="fileName"
-    (click)="fileInput.click()">
-
-    <div class="w-9 h-9 rounded-lg bg-app-bg flex items-center justify-center flex-shrink-0">
-      <span class="material-icons text-silver" style="font-size:18px">upload_file</span>
+    (click)="fileInput.click()"
+  >
+    <div
+      class="w-9 h-9 rounded-lg bg-app-bg flex items-center justify-center flex-shrink-0"
+    >
+      <span class="material-icons text-silver" style="font-size: 18px"
+        >upload_file</span
+      >
     </div>
 
     <div class="flex-1 min-w-0">
@@ -21,8 +25,14 @@
       </p>
     </div>
 
-    <span class="text-xs text-silver bg-app-bg border border-silver/30 rounded-full px-3 py-1 flex-shrink-0 group-hover:border-silver/60 transition-colors">
-      {{ fileName ? ('app.form.resumePdfChange' | translate) : ('app.form.resumePdfSelect' | translate) }}
+    <span
+      class="text-xs text-silver bg-app-bg border border-silver/30 rounded-full px-3 py-1 flex-shrink-0 group-hover:border-silver/60 transition-colors"
+    >
+      {{
+        fileName
+          ? ('app.form.resumePdfChange' | translate)
+          : ('app.form.resumePdfSelect' | translate)
+      }}
     </span>
   </div>
 
@@ -32,5 +42,6 @@
     id="file-input"
     accept=".pdf"
     (change)="onFileChange($event)"
-    class="hidden" />
+    class="hidden"
+  />
 </div>

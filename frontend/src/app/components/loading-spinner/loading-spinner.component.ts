@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'loading-spinner',
   standalone: true,
   imports: [TranslateModule],
-  templateUrl: './loading-spinner.component.html'
+  templateUrl: './loading-spinner.component.html',
 })
 export class LoadingSpinnerComponent {
   @Input() messageIndex: number = 0;

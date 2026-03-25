@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { AnalyzerResult } from '../models/analyze.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnalyzeService {
   latestResult: AnalyzerResult | null = null;
 
-  async analyzeResume(pdfBase64: string | null, resumeText: string, jdText: string, roleText: string): Promise<AnalyzerResult> {
+  async analyzeResume(
+    pdfBase64: string | null,
+    resumeText: string,
+    jdText: string,
+    roleText: string
+  ): Promise<AnalyzerResult> {
     const systemPrompt = `Você é um especialista sênior em recrutamento, sistemas ATS e desenvolvimento de carreira, com mais de 15 anos de experiência avaliando currículos para empresas de todos os portes. Sua análise deve ser precisa, construtiva e acionável.
 
 Analise o currículo fornecido e retorne SOMENTE um objeto JSON válido, sem markdown, sem backticks, sem texto extra.

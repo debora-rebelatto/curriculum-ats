@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'job-details-form',
   standalone: true,
   imports: [FormsModule, TranslateModule],
-  templateUrl: './job-details-form.component.html'
+  templateUrl: './job-details-form.component.html',
 })
 export class JobDetailsFormComponent {
   @Input() jdText: string = '';

@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'source-toggle',
   standalone: true,
   imports: [CommonModule, TranslateModule],
-  templateUrl: './source-toggle.component.html'
+  templateUrl: './source-toggle.component.html',
 })
 export class SourceToggleComponent {
   @Input() activeTab: 'upload' | 'paste' = 'upload';

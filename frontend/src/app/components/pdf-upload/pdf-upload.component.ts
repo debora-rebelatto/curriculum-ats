@@ -6,11 +6,15 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-pdf-upload',
   standalone: true,
   imports: [TranslateModule],
-  templateUrl: './pdf-upload.component.html'
+  templateUrl: './pdf-upload.component.html',
 })
 export class PdfUploadComponent {
   @Input() fileName: string | null = null;
-  @Output() fileSelected = new EventEmitter<{ file: File; base64: string; name: string }>();
+  @Output() fileSelected = new EventEmitter<{
+    file: File;
+    base64: string;
+    name: string;
+  }>();
 
   onFileChange(event: any) {
     const file = event.target.files[0];
