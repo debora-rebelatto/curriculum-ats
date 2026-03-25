@@ -5,22 +5,20 @@
   >
     <source-toggle [activeTab]="activeTab" (tabChange)="switchTab($event)" />
     <div class="flex flex-col gap-6 mt-6">
-      @if (activeTab === 'upload') {
-        <div class="animate-fade-in">
+      <div class="animate-fade-in">
+        @if (activeTab === 'upload') {
           <app-pdf-upload
             [fileName]="fileName"
             (fileSelected)="handleFile($event)"
           />
-        </div>
-      }
-      @if (activeTab === 'paste') {
-        <div class="animate-fade-in">
+        }
+        @if (activeTab === 'paste') {
           <app-text-paste
             [resumeText]="uploadForm.controls.resumeText.value"
             (resumeTextChange)="uploadForm.controls.resumeText.setValue($event)"
           />
-        </div>
-      }
+        }
+      </div>
       <div class="pt-4 border-t border-app-border2">
         <job-details-form
           [jdText]="uploadForm.controls.jdText.value"

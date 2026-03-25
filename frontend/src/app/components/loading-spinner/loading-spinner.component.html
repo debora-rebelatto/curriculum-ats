@@ -15,6 +15,7 @@
     <div class="w-3.5 h-3.5 bg-silver rounded-full animate-bounce"></div>
   </div>
   <h3
+    [attr.data-testid]="'loading-msg-' + messageIndex()"
     class="text-2xl font-outfit font-medium text-app-text transition-all duration-500"
   >
     {{ 'app.loading.msg' + messageIndex() | translate }}

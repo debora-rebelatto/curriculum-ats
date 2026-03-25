@@ -9,5 +9,5 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './loading-spinner.component.html',
 })
 export class LoadingSpinnerComponent {
-  messageIndex = signal(1);
+  messageIndex = signal(0);
 }
