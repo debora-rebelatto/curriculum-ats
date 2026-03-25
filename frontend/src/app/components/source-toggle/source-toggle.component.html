@@ -3,32 +3,20 @@
 >
   <div
     class="absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-lg shadow-sm ring-1 ring-app-border2 transition-all duration-300 ease-out z-0"
-    [ngClass]="
-      activeTab === 'upload'
-        ? 'translate-x-0 bg-app-bg2'
-        : 'translate-x-[calc(100%+6px)] bg-app-bg2'
-    "
+    [ngClass]="activeTab === 'upload' ? 'translate-x-0 bg-app-bg2' : 'translate-x-full bg-app-bg2'"
   ></div>
 
   <button
-    class="relative flex-1 sm:flex-none px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200"
-    [ngClass]="
-      activeTab === 'upload'
-        ? 'text-accent'
-        : 'text-app-text3 hover:text-app-text2'
-    "
+    class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
+    [ngClass]="activeTab === 'upload' ? 'text-accent' : 'text-app-text3 hover:text-app-text2'"
     (click)="tabChange.emit('upload')"
   >
     {{ 'app.tabs.upload' | translate }}
   </button>
 
   <button
-    class="relative flex-1 sm:flex-none px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200"
-    [ngClass]="
-      activeTab === 'paste'
-        ? 'text-accent'
-        : 'text-app-text3 hover:text-app-text2'
-    "
+    class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
+    [ngClass]="activeTab === 'paste' ? 'text-accent' : 'text-app-text3 hover:text-app-text2'"
     (click)="tabChange.emit('paste')"
   >
     {{ 'app.tabs.paste' | translate }}
