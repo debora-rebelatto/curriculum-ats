@@ -10,6 +10,22 @@ module.exports = {
         outfit: ['Outfit', 'sans-serif'],
       },
       colors: {
+        app: {
+          bg: 'var(--bg)',
+          bg2: 'var(--bg2)',
+          bg3: 'var(--bg3)',
+          text: 'var(--text)',
+          text2: 'var(--text2)',
+          text3: 'var(--text3)',
+          border: 'var(--border)',
+          border2: 'var(--border2)',
+        },
+        accent: '#a0b8d0',
+        accentHover: '#8098b0',
+        silver: '#a0b8d0',
+        silverHover: '#8098b0',
+        mint: '#7ecfa0',
+        ruby: '#d07070',
         brand: {
           50: '#f0f9ff',
           100: '#e0f2fe',

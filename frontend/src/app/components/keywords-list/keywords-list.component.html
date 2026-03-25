@@ -16,7 +16,7 @@
       </h4>
       <div class="flex flex-wrap gap-2">
         @for (k of keywordsFound; track k) {
-          <span class="px-3 py-1.5 bg-success-50 dark:bg-success-900/20 text-success-700 dark:text-success-400 border border-success-200/60 dark:border-success-800/50 rounded-xl text-sm font-medium shadow-sm">
+          <span class="tag found px-3 py-1.5 rounded-xl text-sm font-medium shadow-sm">
             {{ k }}
           </span>
         }
@@ -37,7 +37,7 @@
       </h4>
       <div class="flex flex-wrap gap-2">
         @for (k of keywordsMissing; track k) {
-          <span class="px-3 py-1.5 bg-error-50 dark:bg-error-900/20 text-error-700 dark:text-error-400 border border-error-200/60 dark:border-error-800/50 rounded-xl text-sm font-medium shadow-sm">
+          <span class="tag missing px-3 py-1.5 rounded-xl text-sm font-medium shadow-sm">
             {{ k }}
           </span>
         }

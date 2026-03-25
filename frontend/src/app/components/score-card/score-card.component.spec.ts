@@ -35,18 +35,18 @@ describe('ScoreCardComponent', () => {
   });
 
   it('should return correct color for high score', () => {
-    expect(component.getScoreColor(85)).toBe('text-emerald-500');
+    expect(component.getScoreColor(85)).toBe('text-mint');
   });
 
   it('should return correct color for medium score', () => {
-    expect(component.getScoreColor(60)).toBe('text-amber-500');
+    expect(component.getScoreColor(60)).toBe('text-gold');
   });
 
   it('should return correct color for low score', () => {
-    expect(component.getScoreColor(30)).toBe('text-rose-500');
+    expect(component.getScoreColor(30)).toBe('text-ruby');
   });
 
   it('should return correct color for null score', () => {
-    expect(component.getScoreColor(null)).toBe('text-slate-400');
+    expect(component.getScoreColor(null)).toBe('text-app-text3');
   });
 });
