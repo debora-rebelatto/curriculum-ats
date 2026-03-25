@@ -9,6 +9,7 @@
 
   @for (tab of tabs; track tab[0]) {
     <button
+      [attr.data-testid]="'tab-' + tab[0]"
       class="relative flex-1 px-6 py-2 z-10 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap"
       [class.text-accent]="activeTab === tab[0]"
       [class.text-app-text3]="activeTab !== tab[0]"
