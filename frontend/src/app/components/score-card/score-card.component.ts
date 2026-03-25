@@ -14,17 +14,17 @@ export class ScoreCardComponent {
 
   getScoreColor(s: number | null | undefined): string {
     if (s === null || s === undefined) return 'text-app-text3';
-    return s >= 75 ? 'text-mint' : (s >= 50 ? 'text-gold' : 'text-ruby');
+    return s >= 75 ? 'text-mint' : (s >= 50 ? 'text-accent' : 'text-ruby');
   }
 
   getBlobClasses(): string {
     switch (this.theme) {
       case 'brand':
-        return '-right-6 -top-6 bg-gold/10 group-hover:bg-gold/20';
+        return '-right-6 -top-6 bg-accent/10 group-hover:bg-accent/20';
       case 'indigo':
         return '-left-6 -bottom-6 bg-mint/10 group-hover:bg-mint/20';
       case 'gradient':
-        return 'inset-0 bg-gradient-to-br from-gold/5 to-mint/5 opacity-0 group-hover:opacity-100 w-full h-full';
+        return 'inset-0 bg-gradient-to-br from-accent/5 to-mint/5 opacity-0 group-hover:opacity-100 w-full h-full';
       default:
         return '';
     }

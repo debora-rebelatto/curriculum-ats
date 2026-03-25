@@ -41,7 +41,7 @@
           <span class="hidden sm:inline">{{ 'app.results.exportImg' | translate }}</span>
         </button>
         <button
-          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-[#181a22] bg-silver border border-silverHover rounded-xl shadow-sm hover:bg-silverHover transition-all"
+          class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
           (click)="exportPDF()">
           <span class="material-icons text-[18px]">description</span>
           <span class="hidden sm:inline">{{ 'app.results.exportPdf' | translate }}</span>
@@ -77,4 +77,4 @@
       <suggestions-list [suggestions]="results.suggestions" />
     }
   </div>
-}
+}

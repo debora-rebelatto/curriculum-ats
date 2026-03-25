@@ -13,6 +13,8 @@
       "resumePdfLabel": "Currículo em PDF",
       "resumePdfHint": "Somente arquivos PDF até 10MB",
       "resumePdfAction": "Clique ou arraste um arquivo PDF",
+      "resumePdfSelect": "Selecionar arquivo",
+      "resumePdfChange": "Trocar arquivo",
       "jdLabel": "Descrição da vaga (Opcional)",
       "jdPlaceholder": "Para análise de aderência à vaga...",
       "roleLabel": "Cargo / Área alvo",

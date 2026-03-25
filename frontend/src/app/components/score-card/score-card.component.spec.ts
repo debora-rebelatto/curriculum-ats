@@ -39,7 +39,7 @@ describe('ScoreCardComponent', () => {
   });
 
   it('should return correct color for medium score', () => {
-    expect(component.getScoreColor(60)).toBe('text-gold');
+    expect(component.getScoreColor(60)).toBe('text-accent');
   });
 
   it('should return correct color for low score', () => {
