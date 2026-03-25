@@ -7,6 +7,13 @@ module.exports = {
         sans: ['Inter', 'Outfit', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
       },
+      fontSize: {
+        'icon-xs': '14px',
+        'icon-sm': '18px',
+        'icon-md': '20px',
+        'icon-lg': '24px',
+        'icon-xl': '32px',
+      },
       colors: {
         app: {
           bg: 'var(--bg)',

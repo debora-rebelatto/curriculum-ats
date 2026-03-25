@@ -39,7 +39,7 @@
         class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
         (click)="goBack()"
       >
-        <span class="material-icons text-[18px]">arrow_back</span>
+        <span class="material-icons text-icon-sm">arrow_back</span>
         {{ 'app.results.newAnalysis' | translate }}
       </button>
       <div class="flex gap-3 w-full sm:w-auto">
@@ -47,7 +47,7 @@
           class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
           (click)="exportImage()"
         >
-          <span class="material-icons text-[18px]">image</span>
+          <span class="material-icons text-icon-sm">image</span>
           <span class="hidden sm:inline">{{
             'app.results.exportImg' | translate
           }}</span>
@@ -56,7 +56,7 @@
           class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-app-text2 bg-app-bg2 border border-app-border2 rounded-xl shadow-sm hover:bg-app-bg3 hover:text-app-text transition-all"
           (click)="exportPDF()"
         >
-          <span class="material-icons text-[18px]">description</span>
+          <span class="material-icons text-icon-sm">description</span>
           <span class="hidden sm:inline">{{
             'app.results.exportPdf' | translate
           }}</span>
