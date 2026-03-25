@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
+    "test": "npm --prefix frontend test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "e2e": "ng e2e",
