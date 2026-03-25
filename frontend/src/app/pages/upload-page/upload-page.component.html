@@ -1,24 +1,31 @@
-@if (viewMode === 'form-view') {
+@if (!isLoading()) {
   <div
     class="app-card p-6 md:p-10 transition-all duration-300 transform scale-100 relative overflow-hidden"
+    [formGroup]="uploadForm"
   >
     <source-toggle [activeTab]="activeTab" (tabChange)="switchTab($event)" />
     <div class="flex flex-col gap-6 mt-6">
-      @if (activeTab === 'upload') {
-        <div class="animate-fade-in">
+      <div class="animate-fade-in">
+        @if (activeTab === 'upload') {
           <app-pdf-upload
             [fileName]="fileName"
             (fileSelected)="handleFile($event)"
           />
-        </div>
-      }
-      @if (activeTab === 'paste') {
-        <div class="animate-fade-in">
-          <app-text-paste [(resumeText)]="resumeText" />
-        </div>
-      }
+        }
+        @if (activeTab === 'paste') {
+          <app-text-paste
+            [resumeText]="uploadForm.controls.resumeText.value"
+            (resumeTextChange)="uploadForm.controls.resumeText.setValue($event)"
+          />
+        }
+      </div>
       <div class="pt-4 border-t border-app-border2">
-        <job-details-form [(jdText)]="jdText" [(roleText)]="roleText" />
+        <job-details-form
+          [jdText]="uploadForm.controls.jdText.value"
+          (jdTextChange)="uploadForm.controls.jdText.setValue($event)"
+          [roleText]="uploadForm.controls.roleText.value"
+          (roleTextChange)="uploadForm.controls.roleText.setValue($event)"
+        />
       </div>
       <alert-message [message]="errorBox" />
       <div class="pt-2">
@@ -28,8 +35,6 @@
       </div>
     </div>
   </div>
-}
-
-@if (viewMode === 'loading-view') {
-  <loading-spinner [messageIndex]="loadingMsgIndex" />
+} @else {
+  <loading-spinner />
 }

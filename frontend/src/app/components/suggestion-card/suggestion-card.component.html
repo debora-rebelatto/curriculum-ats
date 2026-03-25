@@ -1,8 +1,16 @@
-<div class="mb-6 p-5 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-md" [class]="config.card">
-  <h5 class="font-semibold text-[15px] mb-2 flex items-center gap-2" [class]="config.title">
-
-    <div class="flex items-center justify-center w-7 h-7 rounded-full shadow-sm" [class]="config.iconBg">
-      <span class="material-icons text-[18px]">{{ config.icon }}</span>
+<div
+  class="mb-6 p-5 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-md"
+  [class]="config.card"
+>
+  <h5
+    class="font-semibold text-[15px] mb-2 flex items-center gap-2"
+    [class]="config.title"
+  >
+    <div
+      class="flex items-center justify-center w-7 h-7 rounded-full shadow-sm"
+      [class]="config.iconBg"
+    >
+      <span class="material-icons text-icon-sm">{{ config.icon }}</span>
     </div>
 
     {{ suggestion.title }}

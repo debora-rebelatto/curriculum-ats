@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertMessageComponent } from './alert-message.component';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateService,
+  TranslateLoader,
+} from '@ngx-translate/core';
 import { of } from 'rxjs';
 
 class TranslateLoaderMock implements TranslateLoader {
@@ -17,13 +21,13 @@ describe('AlertMessageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        AlertMessageComponent, 
+        AlertMessageComponent,
         CommonModule,
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateLoaderMock }
-        })
+          loader: { provide: TranslateLoader, useClass: TranslateLoaderMock },
+        }),
       ],
-      providers: [TranslateService]
+      providers: [TranslateService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertMessageComponent);
@@ -46,6 +50,8 @@ describe('AlertMessageComponent', () => {
     component.message = 'Error';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.material-icons')?.textContent).toBe('error_outline');
+    expect(compiled.querySelector('.material-icons')?.textContent).toBe(
+      'error_outline'
+    );
   });
 });

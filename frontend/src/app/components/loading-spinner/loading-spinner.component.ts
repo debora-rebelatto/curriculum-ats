@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, signal } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -6,8 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'loading-spinner',
   standalone: true,
   imports: [TranslateModule],
-  templateUrl: './loading-spinner.component.html'
+  templateUrl: './loading-spinner.component.html',
 })
 export class LoadingSpinnerComponent {
-  @Input() messageIndex: number = 0;
+  messageIndex = signal(0);
 }
