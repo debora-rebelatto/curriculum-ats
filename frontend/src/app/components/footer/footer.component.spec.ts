@@ -17,7 +17,9 @@ describe('FooterComponent', () => {
 
   it('should create and render successfully', () => {
     expect(component).toBeTruthy();
-    const footerElement = fixture.nativeElement.querySelector('[data-testid="footer"]');
+    const footerElement = fixture.nativeElement.querySelector(
+      '[data-testid="footer"]'
+    );
     expect(footerElement).toBeTruthy();
   });
 });

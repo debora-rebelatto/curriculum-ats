@@ -36,15 +36,19 @@ describe('LoadingSpinnerComponent', () => {
   });
 
   it('should render the initial message', () => {
-    const msgElement = fixture.nativeElement.querySelector('[data-testid="loading-msg-0"]');
+    const msgElement = fixture.nativeElement.querySelector(
+      '[data-testid="loading-msg-0"]'
+    );
     expect(msgElement).toBeTruthy();
   });
 
   it('should update the message when messageIndex changes', () => {
     component.messageIndex.set(1);
     fixture.detectChanges();
-    
-    const msgElement = fixture.nativeElement.querySelector('[data-testid="loading-msg-1"]');
+
+    const msgElement = fixture.nativeElement.querySelector(
+      '[data-testid="loading-msg-1"]'
+    );
     expect(msgElement).toBeTruthy();
   });
 });

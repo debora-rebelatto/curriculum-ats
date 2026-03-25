@@ -10,7 +10,12 @@ import { AlertMessageComponent } from '../../components/alert-message/alert-mess
 import { PrimaryButtonComponent } from '../../components/primary-button/primary-button.component';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
 import { TextPasteComponent } from '../../components/text-paste/text-paste.component';
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'upload-page',
@@ -56,7 +61,8 @@ export class UploadPageComponent {
   }
 
   async analyze() {
-    const { resumeText, pdfBase64, jdText, roleText } = this.uploadForm.getRawValue();
+    const { resumeText, pdfBase64, jdText, roleText } =
+      this.uploadForm.getRawValue();
 
     if (this.activeTab === 'upload' && !pdfBase64) {
       this.errorBox = 'error.missingPdf';
@@ -72,12 +78,7 @@ export class UploadPageComponent {
     try {
       const b64 = this.activeTab === 'upload' ? pdfBase64 : null;
       const rText = this.activeTab === 'paste' ? resumeText : '';
-      await this.analyzeService.analyzeResume(
-        b64,
-        rText,
-        jdText,
-        roleText
-      );
+      await this.analyzeService.analyzeResume(b64, rText, jdText, roleText);
 
       this.router.navigate(['/results']);
     } catch (err: any) {

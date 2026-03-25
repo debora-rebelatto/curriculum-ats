@@ -44,26 +44,32 @@ describe('SourceToggleComponent', () => {
 
   it('should emit tabChange when a button is clicked', () => {
     jest.spyOn(component.tabChange, 'emit');
-    const pasteTab = fixture.nativeElement.querySelector('[data-testid="tab-paste"]');
-    
+    const pasteTab = fixture.nativeElement.querySelector(
+      '[data-testid="tab-paste"]'
+    );
+
     pasteTab.click();
-    
+
     expect(component.tabChange.emit).toHaveBeenCalledWith('paste');
   });
 
   it('should have text-accent class on the active tab button', () => {
     component.activeTab = 'upload';
     fixture.detectChanges();
-    
-    const uploadTab = fixture.nativeElement.querySelector('[data-testid="tab-upload"]');
-    const pasteTab = fixture.nativeElement.querySelector('[data-testid="tab-paste"]');
+
+    const uploadTab = fixture.nativeElement.querySelector(
+      '[data-testid="tab-upload"]'
+    );
+    const pasteTab = fixture.nativeElement.querySelector(
+      '[data-testid="tab-paste"]'
+    );
 
     expect(uploadTab.classList.contains('text-accent')).toBe(true);
     expect(pasteTab.classList.contains('text-accent')).toBe(false);
 
     component.activeTab = 'paste';
     fixture.detectChanges();
-    
+
     expect(uploadTab.classList.contains('text-accent')).toBe(false);
     expect(pasteTab.classList.contains('text-accent')).toBe(true);
   });
